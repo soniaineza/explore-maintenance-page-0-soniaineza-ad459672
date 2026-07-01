@@ -24,7 +24,7 @@ async function seed() {
         "Visit the Dian Fossey Research Center and grave",
         "Birdwatching with over 200 recorded species",
       ],
-      imageUrl: "/images/volcanoes-national-park.png",
+      imageUrl: "/images/volcanoes-national-park.webp",
       featured: true,
     },
     {
@@ -42,7 +42,7 @@ async function seed() {
         "Hiking trails ranging from 2 hours to 3 days",
         "Over 300 bird species including the great blue turaco",
       ],
-      imageUrl: "/images/nyungwe-forest.png",
+      imageUrl: "/images/nyungwe-forest.webp",
       featured: true,
     },
     {
@@ -60,7 +60,7 @@ async function seed() {
         "Night game drives for nocturnal wildlife spotting",
         "Stunning views across the Kagera River floodplains",
       ],
-      imageUrl: "/images/akagera-safari.png",
+      imageUrl: "/images/akagera-safari.webp",
       featured: true,
     },
     {
@@ -78,7 +78,7 @@ async function seed() {
         "Beach resorts and lakeside swimming",
         "Sunset cruises with views of the DRC mountains",
       ],
-      imageUrl: "/images/lake-kivu.png",
+      imageUrl: "/images/lake-kivu.webp",
       featured: false,
     },
     {
@@ -96,7 +96,7 @@ async function seed() {
         "Mount Kigali hiking trail with panoramic city views",
         "Rooftop dining and café culture in Kacyiru and Nyarutarama",
       ],
-      imageUrl: "/images/kigali-city.png",
+      imageUrl: "/images/kigali-city.webp",
       featured: false,
     },
   ])
@@ -149,7 +149,7 @@ async function seed() {
         "All meals as specified in the itinerary",
         "Park entrance fees and ranger guide",
       ],
-      imageUrl: "/images/gorilla-trekking.png",
+      imageUrl: "/images/gorilla-trekking.webp",
       featured: true,
     },
     {
@@ -192,7 +192,7 @@ async function seed() {
         "Professional guide and park ranger",
         "Full board meals during the tour",
       ],
-      imageUrl: "/images/nyungwe-forest.png",
+      imageUrl: "/images/nyungwe-forest.webp",
       featured: true,
     },
     {
@@ -245,7 +245,7 @@ async function seed() {
         "All meals and drinking water during the safari",
         "Round-trip transport from Kigali",
       ],
-      imageUrl: "/images/akagera-safari.png",
+      imageUrl: "/images/akagera-safari.webp",
       featured: true,
     },
     {
@@ -320,7 +320,7 @@ async function seed() {
         "Boat safaris, night drives, and guided walks",
         "All taxes and service charges",
       ],
-      imageUrl: "/images/rwanda-hero.png",
+      imageUrl: "/images/rwanda-hero.webp",
       featured: true,
     },
     {
@@ -358,7 +358,7 @@ async function seed() {
         "Bottled water throughout the tour",
         "Coffee tasting experience",
       ],
-      imageUrl: "/images/kigali-city.png",
+      imageUrl: "/images/kigali-city.webp",
       featured: false,
     },
     {
@@ -407,7 +407,7 @@ async function seed() {
         "Coffee plantation tour and tasting",
         "Sunset cruise",
       ],
-      imageUrl: "/images/lake-kivu.png",
+      imageUrl: "/images/lake-kivu.webp",
       featured: false,
     },
     {
@@ -450,7 +450,7 @@ async function seed() {
         "Pottery workshop materials",
         "Local guide and translator",
       ],
-      imageUrl: "/images/cultural-experience.png",
+      imageUrl: "/images/cultural-experience.webp",
       featured: false,
     },
     {
@@ -486,7 +486,7 @@ async function seed() {
         "Round-trip transport from Musanze or Kigali",
         "Bottled water and snacks",
       ],
-      imageUrl: "/images/rwanda-hills.jpg",
+      imageUrl: "/images/rwanda-hills.webp",
       featured: true,
     },
     {
@@ -534,7 +534,7 @@ async function seed() {
         "All park entrance fees",
         "Full board meals and drinking water",
       ],
-      imageUrl: "/images/african-bird.jpg",
+      imageUrl: "/images/african-bird.webp",
       featured: false,
     },
     {
@@ -572,7 +572,7 @@ async function seed() {
         "Farm-to-table lunch",
         "Market tour with local translator",
       ],
-      imageUrl: "/images/kigali-street.jpg",
+      imageUrl: "/images/kigali-street.webp",
       featured: false,
     },
     {
@@ -621,7 +621,7 @@ async function seed() {
         "Round-trip transport from Kigali",
         "Butare National Museum entrance",
       ],
-      imageUrl: "/images/nyungwe-bird.jpg",
+      imageUrl: "/images/nyungwe-bird.webp",
       featured: true,
     },
     {
@@ -659,7 +659,7 @@ async function seed() {
         "Hiking poles (available on request)",
         "Round-trip transport from Musanze",
       ],
-      imageUrl: "/images/rwanda-landscape.jpg",
+      imageUrl: "/images/rwanda-landscape.webp",
       featured: false,
     },
     {
@@ -702,7 +702,7 @@ async function seed() {
         "Island entrance fees and guide",
         "Swimming stops and beach time",
       ],
-      imageUrl: "/images/lake-kivu-sunset.jpg",
+      imageUrl: "/images/lake-kivu-sunset.webp",
       featured: false,
     },
     {
@@ -746,7 +746,7 @@ async function seed() {
         "All meals and drinks at the lodge",
         "Round-trip transport from Kigali",
       ],
-      imageUrl: "/images/rwanda-countryside.jpg",
+      imageUrl: "/images/rwanda-countryside.webp",
       featured: false,
     },
     {
@@ -784,7 +784,7 @@ async function seed() {
         "Inyambo cattle presentation",
         "Lunch at a local restaurant in Nyanza",
       ],
-      imageUrl: "/images/rwanda-market.jpg",
+      imageUrl: "/images/rwanda-market.webp",
       featured: false,
     },
     {
@@ -822,7 +822,7 @@ async function seed() {
         "Reconciliation community visit",
         "Lunch at a local restaurant",
       ],
-      imageUrl: "/images/volcanoes-national-park.png",
+      imageUrl: "/images/volcanoes-national-park.webp",
       featured: false,
     },
   ])

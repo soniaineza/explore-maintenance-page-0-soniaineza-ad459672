@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import { Geist, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import { TranslationProvider } from "@/lib/i18n"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
 
@@ -36,8 +37,10 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <ThemeProvider>
-          {children}
-          <WhatsAppButton />
+          <TranslationProvider>
+            {children}
+            <WhatsAppButton />
+          </TranslationProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

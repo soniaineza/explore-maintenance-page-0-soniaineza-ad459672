@@ -1,6 +1,9 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { MapPin } from "lucide-react"
+import { useTranslation } from "@/lib/i18n"
 import type { Destination } from "@/lib/db/schema"
 
 export function DestinationCard({
@@ -8,6 +11,7 @@ export function DestinationCard({
 }: {
   destination: Destination
 }) {
+  const { t } = useTranslation()
   return (
     <Link
       href={`/destinations/${destination.slug}`}
@@ -31,7 +35,7 @@ export function DestinationCard({
         </h3>
         <p className="mt-1 text-sm text-white/85 drop-shadow">{destination.tagline}</p>
         <span className="mt-3 inline-block text-xs font-medium text-accent opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
-          Explore →
+          {t('destinations.explore')} →
         </span>
       </div>
     </Link>

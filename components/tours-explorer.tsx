@@ -2,18 +2,20 @@
 
 import { useMemo, useState } from "react"
 import { TourCard } from "@/components/tour-card"
+import { useTranslation } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 import type { Tour } from "@/lib/db/schema"
 
 export function ToursExplorer({ tours }: { tours: Tour[] }) {
+  const { t } = useTranslation()
   const categories = useMemo(() => {
-    return ["All", ...Array.from(new Set(tours.map((t) => t.category)))]
-  }, [tours])
+    return [t('tours.all'), ...Array.from(new Set(tours.map((t) => t.category)))]
+  }, [tours, t])
 
-  const [active, setActive] = useState("All")
+  const [active, setActive] = useState(t('tours.all'))
 
   const filtered =
-    active === "All" ? tours : tours.filter((t) => t.category === active)
+    active === t('tours.all') ? tours : tours.filter((t) => t.category === active)
 
   return (
     <div>
@@ -43,7 +45,7 @@ export function ToursExplorer({ tours }: { tours: Tour[] }) {
 
       {filtered.length === 0 && (
         <p className="mt-10 text-center text-muted-foreground">
-          No tours in this category yet.
+          {t('tours.noTours')}
         </p>
       )}
     </div>

@@ -1,11 +1,15 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Clock, MapPin, Users } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { useTranslation } from "@/lib/i18n"
 import { formatPrice } from "@/lib/utils"
 import type { Tour } from "@/lib/db/schema"
 
 export function TourCard({ tour }: { tour: Tour }) {
+  const { t } = useTranslation()
   const price = formatPrice(tour.priceUsd)
 
   return (
@@ -55,7 +59,7 @@ export function TourCard({ tour }: { tour: Tour }) {
 
         <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
           <div>
-            <span className="text-sm text-muted-foreground">from </span>
+            <span className="text-sm text-muted-foreground">{t('tours.from')} </span>
             <span className="text-base font-semibold text-foreground">
               ${price.usd}
             </span>
@@ -64,7 +68,7 @@ export function TourCard({ tour }: { tour: Tour }) {
             </span>
           </div>
           <span className="text-sm font-medium text-primary group-hover:underline">
-            View details
+            {t('tours.viewDetails')}
           </span>
         </div>
       </div>

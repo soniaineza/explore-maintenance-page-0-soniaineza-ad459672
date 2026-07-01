@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { useTranslation } from "@/lib/i18n"
 
 const WA_NUMBER = "250795581177"
 
@@ -20,6 +21,7 @@ export function InquiryForm({
   tours: { slug: string; title: string }[]
   defaultTour?: string
 }) {
+  const { t } = useTranslation()
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
   const [budget, setBudget] = useState(1500)
@@ -41,12 +43,12 @@ export function InquiryForm({
     const message = String(data.get("message") ?? "").trim()
 
     if (!name || !email || !message) {
-      setError("Please fill in your name, email, and a short message.")
+      setError(t('plan.formRequired'))
       setSending(false)
       return
     }
 
-    const tourTitle = tourSlug ? getTourTitle(tourSlug, tours) : "Not sure yet"
+    const tourTitle = tourSlug ? getTourTitle(tourSlug, tours) : t('plan.formNotSure')
     const lines = [
       `Hi TruRwanda! I'd love to plan a trip.`,
       ``,
@@ -77,32 +79,31 @@ export function InquiryForm({
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30">
           <MessageCircle className="h-7 w-7" />
         </div>
-        <h3 className="mt-4 font-heading text-2xl font-semibold text-foreground">
-          WhatsApp opened!
-        </h3>
-        <p className="mx-auto mt-2 max-w-md leading-relaxed text-muted-foreground">
-          Your message has been pre-filled. Just tap send on WhatsApp to
-          reach the TruRwanda team.
-        </p>
-        <p className="mt-4 text-sm text-muted-foreground">
-          Didn&apos;t open?{" "}
-          <a
-            href={`https://wa.me/${WA_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-primary hover:underline"
+          <h3 className="mt-4 font-heading text-2xl font-semibold text-foreground">
+            {t('plan.formSentTitle')}
+          </h3>
+          <p className="mx-auto mt-2 max-w-md leading-relaxed text-muted-foreground">
+            {t('plan.formSentDesc')}
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground">
+            {t('plan.formSentLink')}{" "}
+            <a
+              href={`https://wa.me/${WA_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              {t('plan.formSentLinkText')}
+            </a>
+          </p>
+          <Button
+            size="lg"
+            className="mt-6"
+            onClick={() => setSent(false)}
+            variant="outline"
           >
-            Click here to message us directly
-          </a>
-        </p>
-        <Button
-          size="lg"
-          className="mt-6"
-          onClick={() => setSent(false)}
-          variant="outline"
-        >
-          Start a new inquiry
-        </Button>
+            {t('plan.formNew')}
+          </Button>
       </div>
     )
   }
@@ -111,11 +112,11 @@ export function InquiryForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Full name *</Label>
+          <Label htmlFor="name">{t('plan.formTitle')} *</Label>
           <Input id="name" name="name" required placeholder="Jane Traveler" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
+          <Label htmlFor="email">{t('plan.formEmail')} *</Label>
           <Input
             id="email"
             name="email"
@@ -128,11 +129,11 @@ export function InquiryForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
+          <Label htmlFor="phone">{t('plan.formPhone')}</Label>
           <Input id="phone" name="phone" placeholder="+1 555 000 0000" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="groupSize">Group size</Label>
+          <Label htmlFor="groupSize">{t('plan.formGroupSize')}</Label>
           <Input
             id="groupSize"
             name="groupSize"
@@ -145,14 +146,14 @@ export function InquiryForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="tourSlug">Tour of interest</Label>
+          <Label htmlFor="tourSlug">{t('plan.formTour')}</Label>
           <select
             id="tourSlug"
             name="tourSlug"
             defaultValue={defaultTour ?? ""}
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <option value="">Not sure yet</option>
+                <option value="">{t('plan.formNotSure')}</option>
             {tours.map((tour) => (
               <option key={tour.slug} value={tour.slug}>
                 {tour.title}
@@ -161,15 +162,15 @@ export function InquiryForm({
           </select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="travelDate">Preferred travel date</Label>
+          <Label htmlFor="travelDate">{t('plan.formDate')}</Label>
           <Input id="travelDate" name="travelDate" type="date" />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label>
-          Budget per person: <span className="font-semibold text-primary">${budget.toLocaleString()}</span>
-        </Label>
+          <Label>
+            {t('plan.formBudget')}: <span className="font-semibold text-primary">${budget.toLocaleString()}</span>
+          </Label>
         <input
           type="range"
           name="budget"
@@ -188,7 +189,7 @@ export function InquiryForm({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Tell us about your trip *</Label>
+        <Label htmlFor="message">{t('plan.formMessage')} *</Label>
         <Textarea
           id="message"
           name="message"
@@ -204,17 +205,17 @@ export function InquiryForm({
         {sending ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
-            Opening WhatsApp...
+            {t('plan.formSending')}
           </>
         ) : (
           <>
             <Send className="h-4 w-4" />
-            Send via WhatsApp
+            {t('plan.formSend')}
           </>
         )}
       </Button>
       <p className="text-center text-xs text-muted-foreground">
-        No account needed. Your details go directly to our team on WhatsApp.
+        {t('plan.formNote')}
       </p>
     </form>
   )

@@ -1,10 +1,13 @@
 "use client"
 
+"use client"
+
 import { useEffect } from "react"
 import { AlertTriangle, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { useTranslation } from "@/lib/i18n"
 
 export default function Error({
   error,
@@ -13,6 +16,8 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const { t } = useTranslation()
+
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -26,14 +31,14 @@ export default function Error({
             <AlertTriangle className="h-7 w-7" />
           </span>
           <h1 className="mt-6 font-heading text-3xl font-semibold text-foreground">
-            Something went wrong
+            {t('error.title')}
           </h1>
           <p className="mt-2 text-muted-foreground">
-            We encountered an unexpected error. Please try again.
+            {t('error.desc')}
           </p>
           <Button size="lg" className="mt-8" onClick={reset}>
             <RotateCcw className="h-4 w-4" />
-            Try again
+            {t('error.btn')}
           </Button>
         </div>
       </div>

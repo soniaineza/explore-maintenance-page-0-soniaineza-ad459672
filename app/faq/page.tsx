@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowLeft, ChevronDown, Compass, Shield, Wallet, Luggage, Globe } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { useTranslation } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 
 const faqs = [
@@ -139,6 +140,7 @@ function FAQItem({
 
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const { t } = useTranslation()
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -151,17 +153,16 @@ export default function FAQPage() {
               className="mb-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
-              Home
+              {t('faq.back')}
             </Link>
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-              Help center
+              {t('faq.badge')}
             </p>
             <h1 className="mt-2 font-heading text-4xl font-semibold text-foreground text-balance md:text-5xl">
-              Frequently asked questions
+              {t('faq.title')}
             </h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Everything you need to know about traveling to Rwanda — visas,
-              safety, payments, packing, and more.
+              {t('faq.desc')}
             </p>
           </div>
         </section>

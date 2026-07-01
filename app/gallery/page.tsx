@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ArrowLeft, ChevronLeft, ChevronRight, BookOpen } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { useTranslation } from "@/lib/i18n"
 
 type Spread = {
   leftCaption: string
@@ -24,7 +25,7 @@ const spreads: Spread[] = [
     rightTitle: "A Country Built on Hills",
     rightText:
       "Rwanda is the most densely populated country in mainland Africa, with over 530 people per square kilometer. This density has forced farmers to cultivate every available slope, creating the iconic terraced hillsides. Over 80% of Rwandans work in agriculture, growing coffee, tea, bananas, and beans on these meticulously tended slopes. The nickname 'Land of a Thousand Hills' was popularized by the book and film 'Gorillas in the Mist'.",
-    leftImage: "/images/rwanda-hero.png",
+    leftImage: "/images/rwanda-hero.webp",
   },
   {
     leftCaption: "Virunga Mountains, Volcanoes National Park",
@@ -32,8 +33,8 @@ const spreads: Spread[] = [
     rightTitle: "Volcanoes National Park",
     rightText:
       "Volcanoes National Park protects five of the eight Virunga volcanoes, including Mount Karisimbi at 4,507 meters. Established in 1925, it was Africa's first national park and is now a UNESCO World Heritage site. The park is home to roughly 400 mountain gorillas — one of only two populations left in the world. The endangered golden monkey also inhabits the park's bamboo forests alongside over 200 bird species.",
-    leftImage: "/images/volcanoes-national-park.png",
-    rightImage: "/images/gorilla-trekking.png",
+    leftImage: "/images/volcanoes-national-park.webp",
+    rightImage: "/images/gorilla-trekking.webp",
   },
   {
     leftCaption: "Mountain gorilla family in the wild",
@@ -41,8 +42,8 @@ const spreads: Spread[] = [
     rightTitle: "Encountering the Mountain Gorilla",
     rightText:
       "There are approximately 1,063 mountain gorillas left in the wild, split between the Virunga massif and Bwindi Impenetrable Forest. Rwanda's gorilla trekking permits cost $1,500 per person, with a portion directly funding conservation. A trek can last from 30 minutes to 4 hours through steep terrain at altitudes over 2,500 meters. Visitors spend exactly one hour with the gorilla family — a life-changing experience.",
-    leftImage: "/images/gorilla-trekking.png",
-    rightImage: "/images/rwanda-hills.jpg",
+    leftImage: "/images/gorilla-trekking.webp",
+    rightImage: "/images/rwanda-hills.webp",
   },
   {
     leftCaption: "Canopy walkway, Nyungwe Forest",
@@ -50,8 +51,8 @@ const spreads: Spread[] = [
     rightTitle: "Nyungwe: Ancient Rainforest",
     rightText:
       "Nyungwe Forest National Park spans 1,019 square kilometers of ancient montane rainforest — one of the oldest in Africa, dating back over 40 million years. Its canopy walkway, suspended 50 meters above the forest floor, stretches 160 meters across a valley. The park hosts 13 primate species, over 300 bird species, and more than 1,000 plant species including giant lobelias and rare orchids found nowhere else on Earth.",
-    leftImage: "/images/nyungwe-forest.png",
-    rightImage: "/images/nyungwe-bird.jpg",
+    leftImage: "/images/nyungwe-forest.webp",
+    rightImage: "/images/nyungwe-bird.webp",
   },
   {
     leftCaption: "Savanna plains of Akagera National Park",
@@ -59,8 +60,8 @@ const spreads: Spread[] = [
     rightTitle: "Akagera: A Conservation Revival",
     rightText:
       "Akagera National Park covers 1,122 square kilometers in eastern Rwanda. After the 1994 genocide, the park's lion and rhino populations were wiped out. A remarkable reintroduction effort brought lions back in 2015 and black rhinos in 2017. Today the park is a thriving Big Five reserve with over 12,000 large mammals including elephants, buffalo, giraffe, zebra, and eland across two distinct ecosystems.",
-    leftImage: "/images/akagera-safari.png",
-    rightImage: "/images/akagera-zebra.jpg",
+    leftImage: "/images/akagera-safari.webp",
+    rightImage: "/images/akagera-zebra.webp",
   },
   {
     leftCaption: "Lake Kivu, one of the African Great Lakes",
@@ -68,8 +69,8 @@ const spreads: Spread[] = [
     rightTitle: "The Depths of Lake Kivu",
     rightText:
       "Lake Kivu stretches 89 kilometers along Rwanda's western border with the Democratic Republic of Congo. At 1,460 meters above sea level, it is one of the highest-elevation Great Lakes. The lake reaches depths of 485 meters. Its waters host the unique Isambaza fish, a staple of Rwandan cuisine. In 2023, Rwanda completed a methane gas extraction plant on the lake, powering thousands of homes while preventing natural gas buildup.",
-    leftImage: "/images/lake-kivu.png",
-    rightImage: "/images/lake-kivu-sunset.jpg",
+    leftImage: "/images/lake-kivu.webp",
+    rightImage: "/images/lake-kivu-sunset.webp",
   },
   {
     leftCaption: "Kigali — Africa's cleanest capital",
@@ -77,8 +78,8 @@ const spreads: Spread[] = [
     rightTitle: "Kigali: The City of a Thousand Hills",
     rightText:
       "Kigali has been named the cleanest city in Africa multiple times, thanks to monthly community clean-up days called 'Umuganda' — a tradition on the last Saturday of every month. Plastic bags have been banned since 2008. The city sits on rolling hills at 1,567 meters elevation and is home to approximately 1.2 million people. Kigali International Airport connects to over 25 international destinations worldwide.",
-    leftImage: "/images/kigali-city.png",
-    rightImage: "/images/kigali-street.jpg",
+    leftImage: "/images/kigali-city.webp",
+    rightImage: "/images/kigali-street.webp",
   },
   {
     leftCaption: "Traditional Intore dance",
@@ -86,8 +87,8 @@ const spreads: Spread[] = [
     rightTitle: "Rwanda's Living Culture",
     rightText:
       "The Intore dance troupe originated as a warrior dance performed before battles to boost morale. Today it is Rwanda's most famous cultural performance, recognized by UNESCO as part of the country's intangible cultural heritage. Dancers wear grass crowns and carry spears and shields, moving with athletic jumps and stomps to the rhythm of Ingoma drums. The accompanying singers tell stories of bravery, love, and daily life in Kinyarwanda.",
-    leftImage: "/images/cultural-experience.png",
-    rightImage: "/images/rwanda-market.jpg",
+    leftImage: "/images/cultural-experience.webp",
+    rightImage: "/images/rwanda-market.webp",
   },
   {
     leftCaption: "Rwandan countryside near Volcanoes NP",
@@ -95,8 +96,8 @@ const spreads: Spread[] = [
     rightTitle: "Beyond the Parks",
     rightText:
       "Rwanda's Northern Province is the most densely populated region, home to Musanze and Ruhengeri. The area near Volcanoes National Park has seen significant development from gorilla tourism revenue, with 10% of permit fees going to local communities. The Iby'Iwacu Cultural Village provides employment for former poachers who now work as guides, performers, and conservation ambassadors — a model of community-driven tourism.",
-    leftImage: "/images/rwanda-countryside.jpg",
-    rightImage: "/images/rwanda-landscape.jpg",
+    leftImage: "/images/rwanda-countryside.webp",
+    rightImage: "/images/rwanda-landscape.webp",
   },
 ]
 
@@ -125,9 +126,10 @@ function PageSpread({
       {/* Left page - image */}
       <motion.div
         key={`left-${index}`}
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        initial={{ opacity: 0, x: -60, scale: 0.98 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ scale: 1.01 }}
         className="relative flex aspect-[4/3] items-center justify-center overflow-hidden md:aspect-auto md:w-1/2"
       >
         <Image
@@ -136,7 +138,7 @@ function PageSpread({
           fill
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-700 hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
@@ -149,9 +151,9 @@ function PageSpread({
       {/* Right page - text */}
       <motion.div
         key={`right-${index}`}
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
+        initial={{ opacity: 0, x: 60, scale: 0.98 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         className="flex flex-col justify-center bg-[#F7F1E8] p-8 md:w-1/2 md:p-10"
       >
         {spread.rightImage && (
@@ -210,6 +212,7 @@ function PageSpread({
 }
 
 export default function GalleryPage() {
+  const { t } = useTranslation()
   const [page, setPage] = useState(-1)
   const [direction, setDirection] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -252,10 +255,10 @@ export default function GalleryPage() {
 
   const variants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 300 : -300,
+      x: dir > 0 ? 600 : -600,
       opacity: 0,
-      rotateY: dir > 0 ? -15 : 15,
-      scale: 0.97,
+      rotateY: dir > 0 ? -20 : 20,
+      scale: 0.95,
     }),
     center: {
       x: 0,
@@ -264,10 +267,10 @@ export default function GalleryPage() {
       scale: 1,
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? -300 : 300,
+      x: dir > 0 ? -600 : 600,
       opacity: 0,
-      rotateY: dir > 0 ? 15 : -15,
-      scale: 0.97,
+      rotateY: dir > 0 ? 20 : -20,
+      scale: 0.95,
     }),
   }
 
@@ -283,10 +286,9 @@ export default function GalleryPage() {
               className="inline-flex items-center gap-1 text-xs text-white/50 hover:text-white"
             >
               <ArrowLeft className="h-3 w-3" />
-              Home
+              {t('gallery.home')}
             </Link>
-            <span className="text-xs text-white/30">/</span>
-            <span className="text-xs text-white/50">Gallery</span>
+            <span className="text-xs text-white/50">{t('gallery.title')}</span>
             {page >= 0 && (
               <span className="ml-auto text-xs text-white/30">
                 {page + 1} / {totalSpreads}
@@ -304,8 +306,10 @@ export default function GalleryPage() {
             {/* Closed book */}
             {page === -1 && (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                whileHover={{ scale: 1.02, y: -4 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="relative mx-auto max-w-md cursor-pointer"
                 onClick={openBook}
@@ -321,10 +325,10 @@ export default function GalleryPage() {
                         Rwanda
                       </h1>
                       <p className="mt-2 text-center text-sm uppercase tracking-[0.3em] text-[#D4AF37]/60">
-                        A Visual Journey
+                        {t('gallery.subtitle')}
                       </p>
                       <div className="mt-8 h-px w-16 bg-[#D4AF37]/40" />
-                      <p className="mt-6 text-xs text-[#D4AF37]/40">Click to open</p>
+                      <p className="mt-6 text-xs text-[#D4AF37]/40">{t('gallery.clickToOpen')}</p>
                     </div>
                   </div>
                 </div>
@@ -344,12 +348,19 @@ export default function GalleryPage() {
                   animate="center"
                   exit="exit"
                   transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.4 },
-                    rotateY: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-                    scale: { duration: 0.4 },
+                    x: { type: "spring", stiffness: 200, damping: 28, mass: 1 },
+                    opacity: { duration: 0.35, ease: "easeOut" },
+                    rotateY: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                    scale: { duration: 0.35, ease: "easeOut" },
                   }}
-                  className="relative overflow-hidden rounded-sm bg-white shadow-2xl shadow-black/50"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.3}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -80) next()
+                    if (info.offset.x > 80) prev()
+                  }}
+                  className="relative overflow-hidden rounded-sm bg-white shadow-2xl shadow-black/50 cursor-grab active:cursor-grabbing"
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   <PageSpread
@@ -362,32 +373,46 @@ export default function GalleryPage() {
 
                   {/* Navigation overlay */}
                   <div className="absolute inset-0 flex">
-                    <button
+                    <motion.button
                       type="button"
                       onClick={prev}
                       disabled={page === 0}
                       className="group relative w-1/2 cursor-pointer outline-none disabled:cursor-default"
-                      aria-label="Previous"
+                      aria-label={t('gallery.previous')}
+                      whileHover={{ backgroundColor: "rgba(0,0,0,0.03)" }}
+                      whileTap={{ scale: 1.0 }}
                     >
                       {page > 0 && (
-                        <div className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/70 text-[#2A2A2A] opacity-0 shadow-md backdrop-blur transition-all duration-300 group-hover:opacity-100">
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          whileHover={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[#2A2A2A] shadow-md backdrop-blur-sm"
+                        >
                           <ChevronLeft className="h-5 w-5" />
-                        </div>
+                        </motion.div>
                       )}
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
                       type="button"
                       onClick={next}
                       disabled={page === totalSpreads - 1}
                       className="group relative w-1/2 cursor-pointer outline-none disabled:cursor-default"
-                      aria-label="Next"
+                      aria-label={t('gallery.next')}
+                      whileHover={{ backgroundColor: "rgba(0,0,0,0.03)" }}
+                      whileTap={{ scale: 1.0 }}
                     >
                       {page < totalSpreads - 1 && (
-                        <div className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/70 text-[#2A2A2A] opacity-0 shadow-md backdrop-blur transition-all duration-300 group-hover:opacity-100">
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          whileHover={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute right-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[#2A2A2A] shadow-md backdrop-blur-sm"
+                        >
                           <ChevronRight className="h-5 w-5" />
-                        </div>
+                        </motion.div>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
 
                   {/* Page curl hint */}
@@ -414,9 +439,9 @@ export default function GalleryPage() {
                   className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors"
                 >
                   <ChevronLeft className="h-3 w-3" />
-                  Close book
+                  {t('gallery.close')}
                 </button>
-                <p className="mt-3 text-xs text-white/30">The end of our journey</p>
+                <p className="mt-3 text-xs text-white/30">{t('gallery.end')}</p>
               </motion.div>
             )}
           </div>
