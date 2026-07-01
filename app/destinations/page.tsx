@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: "Destinations | TruRwanda",
   description:
-    "Explore Rwanda's iconic destinations — national parks, lakes, forests and the capital city of Kigali.",
+    "Sommets volcaniques, plaines de savane, forêts tropicales anciennes et un grand lac intérieur — découvrez les lieux qui rendent le Rwanda inoubliable.",
 }
 
 export default async function DestinationsPage() {

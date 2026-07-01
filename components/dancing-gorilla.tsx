@@ -2,7 +2,7 @@
 
 export function DancingGorilla() {
   return (
-    <span className="inline-flex items-center justify-center dancing-gorilla" aria-label="Dancing gorilla">
+    <span className="inline-flex items-center justify-center dancing-gorilla" aria-label="Gorille dansant">
       <svg
         width="22"
         height="22"

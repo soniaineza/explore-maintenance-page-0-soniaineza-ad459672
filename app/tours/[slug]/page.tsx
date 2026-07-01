@@ -15,7 +15,7 @@ type Params = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params
   const tour = await getTourBySlug(slug)
-  if (!tour) return { title: "Tour not found | TruRwanda" }
+  if (!tour) return { title: "Circuit introuvable | TruRwanda" }
   return {
     title: `${tour.title} | TruRwanda`,
     description: tour.summary,

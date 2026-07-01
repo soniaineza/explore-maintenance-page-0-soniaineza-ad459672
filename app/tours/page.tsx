@@ -7,9 +7,9 @@ import { getAllTours } from "@/lib/queries"
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: "Tours | TruRwanda",
+  title: "Circuits | TruRwanda",
   description:
-    "Browse curated Rwanda tours — gorilla trekking, safaris, rainforest adventures, cultural experiences and multi-day journeys.",
+    "Parcourez les circuits organisés au Rwanda — trekking avec les gorilles, safaris, aventures en forêt tropicale, expériences culturelles et voyages de plusieurs jours.",
 }
 
 export default async function ToursPage() {

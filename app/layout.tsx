@@ -13,9 +13,9 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "TruRwanda | Explore the Land of a Thousand Hills",
+  title: "TruRwanda | Explorez le Pays aux Mille Collines",
   description:
-    "Discover Rwanda through curated tours and destinations — gorilla trekking, Big Five safaris, rainforest adventures and lakeside escapes.",
+    "Découvrez le Rwanda à travers des circuits et destinations organisés — trekking avec les gorilles, safaris des Big Five, aventures en forêt tropicale et escapades lacustres.",
   generator: "v0.app",
 }
 
@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`${geistSans.variable} ${playfair.variable}`}
       suppressHydrationWarning
     >

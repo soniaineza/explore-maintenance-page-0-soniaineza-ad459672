@@ -23,7 +23,7 @@ export function PageHero({
             className="mb-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            {backLabel ?? "Back"}
+            {backLabel ?? "Retour"}
           </Link>
         )}
         <p className="text-sm font-semibold uppercase tracking-wide text-accent">

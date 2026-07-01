@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react'
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react'
 import { translations, type Locale } from './translations'
 
 type TranslationContext = {
@@ -10,9 +10,22 @@ type TranslationContext = {
 }
 
 const Context = createContext<TranslationContext | null>(null)
+const STORAGE_KEY = 'trw-locale'
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocaleState] = useState<Locale>('fr')
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored === 'en' || stored === 'fr') {
+      setLocaleState(stored)
+    }
+  }, [])
+
+  const setLocale = useCallback((next: Locale) => {
+    setLocaleState(next)
+    localStorage.setItem(STORAGE_KEY, next)
+  }, [])
 
   const t = useCallback(
     (key: string) => {

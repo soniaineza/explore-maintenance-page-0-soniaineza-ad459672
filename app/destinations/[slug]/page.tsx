@@ -15,7 +15,7 @@ type Params = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params
   const destination = await getDestinationBySlug(slug)
-  if (!destination) return { title: "Destination not found | TruRwanda" }
+  if (!destination) return { title: "Destination introuvable | TruRwanda" }
   return {
     title: `${destination.name} | TruRwanda`,
     description: destination.tagline,

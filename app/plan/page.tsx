@@ -7,9 +7,9 @@ import { getTourOptions } from "@/lib/queries"
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: "Plan a Trip | TruRwanda",
+  title: "Planifier un voyage | TruRwanda",
   description:
-    "Tell us how you like to travel and our Rwanda experts will craft a personalized itinerary just for you.",
+    "Dites-nous comment vous aimez voyager et nos experts rwandais créeront un itinéraire personnalisé rien que pour vous.",
 }
 
 type SearchParams = { searchParams: Promise<{ tour?: string }> }
