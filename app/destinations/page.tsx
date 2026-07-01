@@ -4,6 +4,8 @@ import { SiteFooter } from "@/components/site-footer"
 import { DestinationsContent } from "@/components/destinations-content"
 import { getAllDestinations } from "@/lib/queries"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Destinations | TruRwanda",
   description:

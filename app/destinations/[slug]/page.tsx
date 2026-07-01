@@ -8,6 +8,8 @@ import {
   getToursForDestination,
 } from "@/lib/queries"
 
+export const dynamic = 'force-dynamic'
+
 type Params = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {

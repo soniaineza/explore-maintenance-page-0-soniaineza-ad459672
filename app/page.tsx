@@ -3,6 +3,8 @@ import { SiteFooter } from "@/components/site-footer"
 import { HomeContent } from "@/components/home-content"
 import { getAllTours, getFeaturedDestinations } from "@/lib/queries"
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const [tours, destinations] = await Promise.all([
     getAllTours(),

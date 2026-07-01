@@ -4,6 +4,8 @@ import { SiteFooter } from "@/components/site-footer"
 import { PlanContent } from "@/components/plan-content"
 import { getTourOptions } from "@/lib/queries"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Plan a Trip | TruRwanda",
   description:
