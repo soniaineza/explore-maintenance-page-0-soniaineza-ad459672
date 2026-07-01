@@ -13,7 +13,7 @@ const Context = createContext<TranslationContext | null>(null)
 const STORAGE_KEY = 'trw-locale'
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('fr')
+  const [locale, setLocaleState] = useState<Locale>('en')
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY)
