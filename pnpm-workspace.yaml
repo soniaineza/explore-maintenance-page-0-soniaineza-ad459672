@@ -19,3 +19,7 @@ minimumReleaseAgeExclude:
   - '@img/sharp-win32-ia32@0.35.3'
   - '@img/sharp-win32-x64@0.35.3'
   - sharp@0.35.3
+  - '@payloadcms/db-postgres@3.85.2'
+  - '@payloadcms/drizzle@3.85.2'
+  - '@payloadcms/translations@3.85.2'
+  - payload@3.85.2

@@ -21,7 +21,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     description: destination.tagline,
   }
 }
-
 export default async function DestinationDetailPage({ params }: Params) {
   const { slug } = await params
   const destination = await getDestinationBySlug(slug)
