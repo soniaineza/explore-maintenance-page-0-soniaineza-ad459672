@@ -12,10 +12,8 @@ const generatedTypesPath = path.resolve(__dirname, 'payload-types.ts')
 const typescriptConfig = process.env.NODE_ENV === 'production' ? undefined : { outputFile: generatedTypesPath }
 
 export async function getPayloadConfig(): Promise<SanitizedConfig> {
-  const payloadPackage = 'payload'
-  const dbPackage = '@payloadcms/' + 'db-postgres'
-  const { buildConfig } = await import(payloadPackage)
-  const { postgresAdapter } = await import(dbPackage)
+  const { buildConfig } = await import('payload')
+  const { postgresAdapter } = await import('@payloadcms/db-postgres')
 
   return buildConfig({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
