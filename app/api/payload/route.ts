@@ -1,42 +1,19 @@
+import {
+  REST_GET,
+  REST_POST,
+  REST_PATCH,
+  REST_DELETE,
+  REST_PUT,
+  REST_OPTIONS,
+} from '@payloadcms/next/routes'
+import config from '@/payload.config'
+
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-async function handlePayloadRequest(request: Request) {
-  try {
-    const [{ handleEndpoints }, { getPayloadConfig }] = await Promise.all([
-      import('payload'),
-      import('../../../payload.config'),
-    ])
-    const config = await getPayloadConfig()
-    return handleEndpoints({ request, config })
-  } catch (error) {
-    console.error('Payload API error', error)
-    return new Response(process.env.NODE_ENV === 'development' ? String(error) : 'Internal Server Error', {
-      status: 500,
-    })
-  }
-}
-
-export async function GET(request: Request) {
-  return handlePayloadRequest(request)
-}
-
-export async function POST(request: Request) {
-  return handlePayloadRequest(request)
-}
-
-export async function PATCH(request: Request) {
-  return handlePayloadRequest(request)
-}
-
-export async function DELETE(request: Request) {
-  return handlePayloadRequest(request)
-}
-
-export async function PUT(request: Request) {
-  return handlePayloadRequest(request)
-}
-
-export async function OPTIONS(request: Request) {
-  return handlePayloadRequest(request)
-}
+export const GET = REST_GET(config)
+export const POST = REST_POST(config)
+export const PATCH = REST_PATCH(config)
+export const DELETE = REST_DELETE(config)
+export const PUT = REST_PUT(config)
+export const OPTIONS = REST_OPTIONS(config)

@@ -177,7 +177,7 @@ async function seed() {
           day: 1,
           title: "Transfer from Kigali to Nyungwe",
           detail: "Depart Kigali early morning and drive through the scenic southern route to Nyungwe Forest, arriving by early afternoon. After check-in, enjoy an afternoon guided walk along one of the shorter trails, learning about the forest's medicinal plants, orchids, and birdlife.",
-        },
+        },  
         {
           day: 2,
           title: "Chimpanzee tracking and canopy walk",

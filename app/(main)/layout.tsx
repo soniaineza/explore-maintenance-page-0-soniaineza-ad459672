@@ -4,7 +4,7 @@ import { Geist, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TranslationProvider } from "@/lib/i18n"
 import { WhatsAppButton } from "@/components/whatsapp-button"
-import "./globals.css"
+import "../globals.css"
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
 const playfair = Playfair_Display({
