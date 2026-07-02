@@ -1,4 +1,3 @@
-import type { SanitizedConfig } from 'payload'
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import path from 'path'
@@ -18,7 +17,7 @@ const dirname = path.dirname(filename)
 const generatedTypesPath = path.resolve(dirname, 'payload-types.ts')
 const typescriptConfig = process.env.NODE_ENV === 'production' ? undefined : { outputFile: generatedTypesPath }
 
-const config: SanitizedConfig = buildConfig({
+const config = await buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
   secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME',
   db: postgresAdapter({
