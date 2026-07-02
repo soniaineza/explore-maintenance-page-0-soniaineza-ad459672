@@ -1,11 +1,12 @@
-import { handleEndpoints } from 'payload'
-import { getPayloadConfig } from '../../../payload.config'
-
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 async function handlePayloadRequest(request: Request) {
   try {
+    const [{ handleEndpoints }, { getPayloadConfig }] = await Promise.all([
+      import('payload'),
+      import('../../../payload.config'),
+    ])
     const config = await getPayloadConfig()
     return handleEndpoints({ request, config })
   } catch (error) {

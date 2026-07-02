@@ -1,6 +1,4 @@
 import type { SanitizedConfig } from 'payload'
-import { buildConfig } from 'payload'
-import { postgresAdapter } from '@payloadcms/db-postgres'
 import path from 'path'
 import { media } from './collections/media'
 import { destinations } from './collections/destinations'
@@ -14,6 +12,11 @@ const generatedTypesPath = path.resolve(__dirname, 'payload-types.ts')
 const typescriptConfig = process.env.NODE_ENV === 'production' ? undefined : { outputFile: generatedTypesPath }
 
 export async function getPayloadConfig(): Promise<SanitizedConfig> {
+  const [{ buildConfig }, { postgresAdapter }] = await Promise.all([
+    import('payload'),
+    import('@payloadcms/db-postgres'),
+  ])
+
   return buildConfig({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
     secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME',
