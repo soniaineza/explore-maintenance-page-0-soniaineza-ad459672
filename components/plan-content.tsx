@@ -28,6 +28,7 @@ export function PlanContent({
         description={t('plan.desc')}
         backHref="/"
         backLabel={t('plan.back')}
+        imageSrc="/images/lake-kivu.webp"
       />
       <section className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-12 lg:grid-cols-3">

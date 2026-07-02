@@ -16,6 +16,7 @@ export function ToursContent({ tours }: { tours: Tour[] }) {
         description={t('tours.desc')}
         backHref="/"
         backLabel={t('tours.back')}
+        imageSrc="/images/gorilla-trekking.webp"
       />
       <section className="mx-auto max-w-6xl px-4 py-10">
         <ToursExplorer tours={tours} />

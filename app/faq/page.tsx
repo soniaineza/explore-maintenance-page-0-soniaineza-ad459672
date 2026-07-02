@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ChevronDown, Compass, Shield, Wallet, Luggage, Globe } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
@@ -146,11 +147,20 @@ export default function FAQPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <section className="border-b border-border bg-secondary/40">
-          <div className="mx-auto max-w-3xl px-4 py-10 md:py-12">
+        <section className="relative flex min-h-[60vh] items-center overflow-hidden">
+          <Image
+            src="/images/rwanda-hills.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="relative mx-auto w-full max-w-3xl px-4 py-10 md:py-12">
             <Link
               href="/"
-              className="mb-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+              className="mb-4 inline-flex items-center gap-1 text-sm text-white/80 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
               {t('faq.back')}
@@ -158,10 +168,10 @@ export default function FAQPage() {
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">
               {t('faq.badge')}
             </p>
-            <h1 className="mt-2 font-heading text-4xl font-semibold text-foreground text-balance md:text-5xl">
+            <h1 className="mt-2 font-heading text-4xl font-semibold text-white text-balance md:text-5xl">
               {t('faq.title')}
             </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/80">
               {t('faq.desc')}
             </p>
           </div>

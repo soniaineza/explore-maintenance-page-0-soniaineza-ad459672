@@ -16,6 +16,7 @@ export function DestinationsContent({ destinations }: { destinations: Destinatio
         description={t('destinations.desc')}
         backHref="/"
         backLabel={t('destinations.back')}
+        imageSrc="/images/volcanoes-national-park.webp"
       />
       <section className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
