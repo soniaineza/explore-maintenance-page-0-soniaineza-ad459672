@@ -1,17 +1,17 @@
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const importModule = new Function('specifier', 'return import(specifier)')
-
 async function getPayloadConfig() {
-  const configPath = new URL('../../../payload.config', import.meta.url).href
-  const configModule = await importModule(configPath)
+  const pathParts = ['..', '..', '..', 'payload.config']
+  const configPath = new URL(pathParts.join('/') , import.meta.url)
+  const configModule = await import(configPath.href)
   return configModule.getPayloadConfig as () => Promise<any>
 }
 
 async function handleAdminRequest(request: Request) {
   try {
-    const { handleEndpoints } = await importModule('payload')
+    const payloadPackage = 'payload'
+    const { handleEndpoints } = await import(payloadPackage)
     const loader = await getPayloadConfig()
     const config = await loader()
 
