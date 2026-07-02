@@ -9,6 +9,7 @@ import { about } from './globals/about'
 import { contact } from './globals/contact'
 import { admins } from './collections/admins'
 const generatedTypesPath = path.resolve(__dirname, 'payload-types.ts')
+const typescriptConfig = process.env.NODE_ENV === 'production' ? undefined : { outputFile: generatedTypesPath }
 
 export async function getPayloadConfig(): Promise<SanitizedConfig> {
   const { buildConfig } = await import('payload')
@@ -32,8 +33,6 @@ export async function getPayloadConfig(): Promise<SanitizedConfig> {
       user: 'admins',
       disable: false,
     },
-    typescript: {
-      outputFile: generatedTypesPath,
-    },
+    ...(typescriptConfig ? { typescript: typescriptConfig } : {}),
   })
 }

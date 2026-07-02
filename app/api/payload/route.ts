@@ -10,11 +10,18 @@ async function getPayloadConfig() {
 }
 
 async function handlePayloadRequest(request: Request) {
-  const { handleEndpoints } = await importModule('payload')
-  const loader = await getPayloadConfig()
-  const config = await loader()
+  try {
+    const { handleEndpoints } = await importModule('payload')
+    const loader = await getPayloadConfig()
+    const config = await loader()
 
-  return handleEndpoints({ request, config })
+    return handleEndpoints({ request, config })
+  } catch (error) {
+    console.error('Payload API error', error)
+    return new Response(process.env.NODE_ENV === 'development' ? String(error) : 'Internal Server Error', {
+      status: 500,
+    })
+  }
 }
 
 export async function GET(request: Request) {
