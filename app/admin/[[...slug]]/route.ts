@@ -1,17 +1,12 @@
+import { handleEndpoints } from 'payload'
+import { getPayloadConfig } from '../../../payload.config'
+
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-async function getPayloadConfig() {
-  const configModule = await import('../../../payload.config')
-  return configModule.getPayloadConfig as () => Promise<any>
-}
-
 async function handleAdminRequest(request: Request) {
   try {
-    const { handleEndpoints } = await import('payload')
-    const loader = await getPayloadConfig()
-    const config = await loader()
-
+    const config = await getPayloadConfig()
     return handleEndpoints({ request, config })
   } catch (error) {
     console.error('Payload admin error', error)
