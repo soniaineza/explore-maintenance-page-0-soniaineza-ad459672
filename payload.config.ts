@@ -17,8 +17,8 @@ const dirname = path.dirname(filename)
 const generatedTypesPath = path.resolve(dirname, 'payload-types.ts')
 const typescriptConfig = process.env.NODE_ENV === 'production' ? undefined : { outputFile: generatedTypesPath }
 
-const config = await buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+const config = buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME',
   db: postgresAdapter({
     pool: {
@@ -37,9 +37,5 @@ const config = await buildConfig({
   },
   ...(typescriptConfig ? { typescript: typescriptConfig } : {}),
 })
-
-export async function getPayloadConfig() {
-  return config
-}
 
 export default config
