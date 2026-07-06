@@ -13,7 +13,7 @@ const Page = async ({ params, searchParams }: Args) => {
     <RootPage
       config={config}
       importMap={importMap}
-      params={Promise.resolve({ segments: slug ?? [], ...rest })}
+      params={Promise.resolve({ segments: slug ?? undefined, ...rest })}
       searchParams={searchParams}
     />
   )

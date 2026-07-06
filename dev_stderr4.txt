@@ -1,0 +1,182 @@
+Persisting failed: Unable to write SST file 00000054.sst
+
+Caused by:
+    The system cannot find the path specified. (os error 3)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+⨯ [next]/internal/font/google/outfit_ca35ecd4.module.css:7:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m 5 |[0m   font-weight: [35m100[0m [35m900[0m;
+  [90m 6 |[0m   font-display: swap;
+[31m[1m>[0m [90m 7 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m:%[35m22[0mhttps:[90m//fonts.gs...[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m 8 |[0m   unicode-range: [33mU[0m+[35m0100[0m-[35m02[0m[33mBA[0m, [33mU[0m+[35m02[0m[33mBD[0m-[35m02[0m[33mC5[0m, [33mU[0m+[35m02[0m[33mC7[0m-[35m02[0m[33mCC[0m, [33mU[0m+[35m02[0m[33mCE[0m-[35m02[0m[33mD7[0m, [33mU[0m+[35m02[0m[33mDD[0m-[35m02[0m[33mFF[0m, [33mU[0m+[35m0304[0m, [33m.[0m.[35m.[0m
+  [90m 9 |[0m }
+  [90m10 |[0m [90m/* latin */[0m
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/outfit_ca35ecd4.module.css
+    [next]/internal/font/google/outfit_ca35ecd4.js
+    ./app/(main)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+[next]/internal/font/google/outfit_ca35ecd4.module.css:16:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m14 |[0m   font-weight: [35m100[0m [35m900[0m;
+  [90m15 |[0m   font-display: swap;
+[31m[1m>[0m [90m16 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m:%[35m22[0mhttps:[90m//fonts.gs...[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m17 |[0m   unicode-range: [33mU[0m+[35m0000[0m-[35m00[0m[33mFF[0m, [33mU[0m+[35m0131[0m, [33mU[0m+[35m0152[0m-[35m0153[0m, [33mU[0m+[35m02[0m[33mBB[0m-[35m02[0m[33mBC[0m, [33mU[0m+[35m02[0m[33mC6[0m, [33mU[0m+[35m02[0m[33mDA[0m, [33mU[0m+[35m02[0m[33mDC[0m, [33mU[0m+[35m...[0m
+  [90m18 |[0m }
+  [90m19 |[0m @font-face {
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/outfit_ca35ecd4.module.css
+    [next]/internal/font/google/outfit_ca35ecd4.js
+    ./app/(main)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+[next]/internal/font/google/playfair_display_fa003182.module.css:7:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m 5 |[0m   font-weight: [35m400[0m [35m900[0m;
+  [90m 6 |[0m   font-display: swap;
+[31m[1m>[0m [90m 7 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m:%[35m22[0mhttps:[90m//fonts.gs...[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m 8 |[0m   unicode-range: [33mU[0m+[35m0301[0m, [33mU[0m+[35m0400[0m-[35m045[0m[33mF[0m, [33mU[0m+[35m0490[0m-[35m0491[0m, [33mU[0m+[35m04[0m[33mB0[0m-[35m04[0m[33mB1[0m, [33mU[0m+[35m2116[0m;
+  [90m 9 |[0m }
+  [90m10 |[0m [90m/* vietnamese */[0m
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_fa003182.module.css
+    [next]/internal/font/google/playfair_display_fa003182.js
+    ./app/(main)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+[next]/internal/font/google/playfair_display_fa003182.module.css:16:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m14 |[0m   font-weight: [35m400[0m [35m900[0m;
+  [90m15 |[0m   font-display: swap;
+[31m[1m>[0m [90m16 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m:%[35m22[0mhttps:[90m//fonts.gs...[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m17 |[0m   unicode-range: [33mU[0m+[35m0102[0m-[35m0103[0m, [33mU[0m+[35m0110[0m-[35m0111[0m, [33mU[0m+[35m0128[0m-[35m0129[0m, [33mU[0m+[35m0168[0m-[35m0169[0m, [33mU[0m+[35m01[0m[33mA0[0m-[35m01[0m[33mA1[0m, [33mU[0m+[35m01[0m[33mAF[0m-[35m0.[0m[33m..[0m
+  [90m18 |[0m }
+  [90m19 |[0m [90m/* latin-ext */[0m
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_fa003182.module.css
+    [next]/internal/font/google/playfair_display_fa003182.js
+    ./app/(main)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+[next]/internal/font/google/playfair_display_fa003182.module.css:25:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m23 |[0m   font-weight: [35m400[0m [35m900[0m;
+  [90m24 |[0m   font-display: swap;
+[31m[1m>[0m [90m25 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m:%[35m22[0mhttps:[90m//fonts.gs...[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m26 |[0m   unicode-range: [33mU[0m+[35m0100[0m-[35m02[0m[33mBA[0m, [33mU[0m+[35m02[0m[33mBD[0m-[35m02[0m[33mC5[0m, [33mU[0m+[35m02[0m[33mC7[0m-[35m02[0m[33mCC[0m, [33mU[0m+[35m02[0m[33mCE[0m-[35m02[0m[33mD7[0m, [33mU[0m+[35m02[0m[33mDD[0m-[35m02[0m[33mFF[0m, [33mU[0m+[35m0304[0m, [33m.[0m.[35m.[0m
+  [90m27 |[0m }
+  [90m28 |[0m [90m/* latin */[0m
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_fa003182.module.css
+    [next]/internal/font/google/playfair_display_fa003182.js
+    ./app/(main)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+[next]/internal/font/google/playfair_display_fa003182.module.css:34:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m32 |[0m   font-weight: [35m400[0m [35m900[0m;
+  [90m33 |[0m   font-display: swap;
+[31m[1m>[0m [90m34 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m:%[35m22[0mhttps:[90m//fonts.gs...[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m35 |[0m   unicode-range: [33mU[0m+[35m0000[0m-[35m00[0m[33mFF[0m, [33mU[0m+[35m0131[0m, [33mU[0m+[35m0152[0m-[35m0153[0m, [33mU[0m+[35m02[0m[33mBB[0m-[35m02[0m[33mBC[0m, [33mU[0m+[35m02[0m[33mC6[0m, [33mU[0m+[35m02[0m[33mDA[0m, [33mU[0m+[35m02[0m[33mDC[0m, [33mU[0m+[35m...[0m
+  [90m36 |[0m }
+  [90m37 |[0m @font-face {
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_fa003182.module.css
+    [next]/internal/font/google/playfair_display_fa003182.js
+    ./app/(main)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⚠ [next]/internal/font/google/14e23f9b59180572-s.woff2
+Error while requesting resource
+There was an issue establishing a connection while requesting https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTPYgEM86xRbPQ.woff2
+
+
+⚠ [next]/internal/font/google/1b99372b3eaef0c8-s.p.woff2
+Error while requesting resource
+There was an issue establishing a connection while requesting https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2
+
+
+⚠ [next]/internal/font/google/2a65768255d6b625-s.p.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgEM86xQ.woff2
+
+
+⚠ [next]/internal/font/google/65c558afe41e89d6-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTjYgEM86xRbPQ.woff2
+
+
+⚠ [next]/internal/font/google/b2ea385cb5ae8625-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJuktqUYLkn8BJ.woff2
+
+
+⚠ [next]/internal/font/google/b49b0d9b851e4899-s.woff2
+Error while requesting resource
+There was an issue establishing a connection while requesting https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTLYgEM86xRbPQ.woff2
+
+
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
