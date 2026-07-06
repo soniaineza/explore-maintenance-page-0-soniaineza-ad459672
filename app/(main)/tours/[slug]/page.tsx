@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!tour) return { title: "Circuit introuvable | TruRwanda" }
   return {
     title: `${tour.title} | TruRwanda`,
-    description: tour.summary,
+    description: tour.shortDescription,
   }
 }
 
@@ -27,7 +27,7 @@ export default async function TourDetailPage({ params }: Params) {
   const tour = await getTourBySlug(slug)
   if (!tour) notFound()
 
-  const related = await getRelatedTours(tour.slug, tour.category)
+  const related = await getRelatedTours(tour.slug, "")
 
   return (
     <div className="flex min-h-screen flex-col">

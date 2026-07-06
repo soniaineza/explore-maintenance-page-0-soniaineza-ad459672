@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const destination = await getDestinationBySlug(slug)
   if (!destination) return { title: "Destination introuvable | TruRwanda" }
   return {
-    title: `${destination.name} | TruRwanda`,
-    description: destination.tagline,
+    title: `${destination.title} | TruRwanda`,
+    description: destination.shortDescription,
   }
 }
 
@@ -27,7 +27,7 @@ export default async function DestinationDetailPage({ params }: Params) {
   const destination = await getDestinationBySlug(slug)
   if (!destination) notFound()
 
-  const tours = await getToursForDestination(destination.slug)
+  const tours = await getToursForDestination(destination.id)
 
   return (
     <div className="flex min-h-screen flex-col">

@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button"
 import { TourCard } from "@/components/tour-card"
 import { DestinationCard } from "@/components/destination-card"
 import { useTranslation } from "@/lib/i18n"
-import type { Tour, Destination } from "@/lib/db/schema"
+import type { TourWithImage, DestinationWithImage } from "@/lib/db/schema"
 
 export function HomeContent({
   tours,
   destinations,
 }: {
-  tours: Tour[]
-  destinations: Destination[]
+  tours: TourWithImage[]
+  destinations: DestinationWithImage[]
 }) {
   const { t, locale } = useTranslation()
 

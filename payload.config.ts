@@ -24,6 +24,7 @@ const config = buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
+    push: false,
   }),
   routes: {
     api: '/api/payload',

@@ -2,28 +2,34 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, Check, Clock, MapPin, Users } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check, Clock, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { TourCard } from "@/components/tour-card"
 import { useTranslation } from "@/lib/i18n"
 import { formatPrice } from "@/lib/utils"
-import type { Tour } from "@/lib/db/schema"
+import type { TourWithImage } from "@/lib/db/schema"
+
+function splitLines(val: string | null): string[] {
+  if (!val) return []
+  return val.split("\n").map((s) => s.trim()).filter(Boolean)
+}
 
 export function TourDetailContent({
   tour,
   related,
 }: {
-  tour: Tour
-  related: Tour[]
+  tour: TourWithImage
+  related: TourWithImage[]
 }) {
   const { t } = useTranslation()
+  const highlights = splitLines(tour.highlights)
+  const included = splitLines(tour.included)
 
   return (
     <>
       <section className="relative flex min-h-[60vh] items-end overflow-hidden">
         <Image
-          src={tour.imageUrl || "/placeholder.svg"}
+          src={tour.heroImageUrl || "/placeholder.svg"}
           alt={tour.title}
           fill
           priority
@@ -39,29 +45,14 @@ export function TourDetailContent({
             <ArrowLeft className="h-4 w-4" />
             {t('tour.allTours')}
           </Link>
-          <Badge className="mt-4 bg-accent text-accent-foreground">
-            {tour.category}
-          </Badge>
-          <h1 className="mt-3 max-w-3xl font-heading text-4xl font-semibold text-balance md:text-5xl">
+          <h1 className="mt-4 max-w-3xl font-heading text-4xl font-semibold text-balance md:text-5xl">
             {tour.title}
           </h1>
           <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/85">
             <span className="inline-flex items-center gap-1.5">
               <Clock className="h-4 w-4" />
-              {tour.durationDays} {tour.durationDays === 1 ? t('tours.day') : t('tours.days')}
+              {tour.duration} {tour.duration === 1 ? t('tours.day') : t('tours.days')}
             </span>
-            {tour.groupSize && (
-              <span className="inline-flex items-center gap-1.5">
-                <Users className="h-4 w-4" />
-                {tour.groupSize}
-              </span>
-            )}
-            {tour.difficulty && (
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" />
-                {tour.difficulty}
-              </span>
-            )}
           </div>
         </div>
       </section>
@@ -73,16 +64,16 @@ export function TourDetailContent({
               {t('tour.about')}
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              {tour.description}
+              {tour.fullDescription}
             </p>
 
-            {tour.highlights.length > 0 && (
+            {highlights.length > 0 && (
               <>
                 <h3 className="mt-10 font-heading text-xl font-semibold text-foreground">
                   {t('tour.highlights')}
                 </h3>
                 <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {tour.highlights.map((h) => (
+                  {highlights.map((h) => (
                     <li
                       key={h}
                       className="flex items-start gap-2 text-sm text-muted-foreground"
@@ -95,26 +86,14 @@ export function TourDetailContent({
               </>
             )}
 
-            {tour.itinerary.length > 0 && (
+            {tour.itinerary && (
               <>
                 <h3 className="mt-10 font-heading text-xl font-semibold text-foreground">
                   {t('tour.itinerary')}
                 </h3>
-                <ol className="mt-4 space-y-6 border-l border-border pl-6">
-                  {tour.itinerary.map((step) => (
-                    <li key={step.day} className="relative">
-                      <span className="absolute -left-[31px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
-                        {step.day}
-                      </span>
-                      <h4 className="font-semibold text-foreground">
-                        {step.title}
-                      </h4>
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                        {step.detail}
-                      </p>
-                    </li>
-                  ))}
-                </ol>
+                <p className="mt-4 whitespace-pre-line leading-relaxed text-muted-foreground">
+                  {tour.itinerary}
+                </p>
               </>
             )}
           </div>
@@ -123,23 +102,23 @@ export function TourDetailContent({
             <div className="sticky top-24 rounded-xl border border-border bg-card p-6">
               <p className="text-sm text-muted-foreground">{t('tour.from')}</p>
               <p className="font-heading text-3xl font-semibold text-foreground">
-                ${formatPrice(tour.priceUsd).usd}
+                ${formatPrice(tour.price).usd}
                 <span className="text-base font-normal text-muted-foreground">
                   {" "}
                   {t('tour.person')}
                 </span>
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                ≈ FRw {formatPrice(tour.priceUsd).rwf}
+                ≈ FRw {formatPrice(tour.price).rwf}
               </p>
 
-              {tour.included.length > 0 && (
+              {included.length > 0 && (
                 <div className="mt-6">
                   <p className="text-sm font-semibold text-foreground">
                     {t('tour.included')}
                   </p>
                   <ul className="mt-3 space-y-2">
-                    {tour.included.map((item) => (
+                    {included.map((item) => (
                       <li
                         key={item}
                         className="flex items-start gap-2 text-sm text-muted-foreground"

@@ -1,51 +1,61 @@
 import {
   boolean,
   integer,
-  jsonb,
   pgTable,
   serial,
   text,
   timestamp,
 } from "drizzle-orm/pg-core"
 
-export const destinations = pgTable("destinations", {
+export const media = pgTable("media", {
   id: serial("id").primaryKey(),
-  slug: text("slug").notNull().unique(),
-  name: text("name").notNull(),
-  region: text("region").notNull(),
-  tagline: text("tagline").notNull(),
-  description: text("description").notNull(),
-  bestTime: text("best_time"),
-  highlights: text("highlights").array().notNull().default([]),
-  imageUrl: text("image_url").notNull(),
-  featured: boolean("featured").notNull().default(false),
+  alt: text("alt").notNull(),
+  caption: text("caption"),
+  url: text("url"),
+  thumbnailURL: text("thumbnail_u_r_l"),
+  filename: text("filename"),
+  mimeType: text("mime_type"),
+  filesize: integer("filesize"),
+  width: integer("width"),
+  height: integer("height"),
+  sizesCardUrl: text("sizes_card_url"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })
 
-export type ItineraryStep = {
-  day: number
-  title: string
-  detail: string
-}
+export const destinations = pgTable("destinations", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  shortDescription: text("short_description").notNull(),
+  fullDescription: text("full_description").notNull(),
+  heroImageId: integer("hero_image_id"),
+  location: text("location").notNull(),
+  featured: boolean("featured").notNull().default(false),
+  published: boolean("published").notNull().default(false),
+  seoTitle: text("seo_title"),
+  seoDescription: text("seo_description"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+})
 
 export const tours = pgTable("tours", {
   id: serial("id").primaryKey(),
-  slug: text("slug").notNull().unique(),
   title: text("title").notNull(),
-  category: text("category").notNull(),
-  summary: text("summary").notNull(),
-  description: text("description").notNull(),
-  durationDays: integer("duration_days").notNull(),
-  groupSize: text("group_size"),
-  difficulty: text("difficulty"),
-  priceUsd: integer("price_usd").notNull(),
-  destinationSlug: text("destination_slug"),
-  highlights: text("highlights").array().notNull().default([]),
-  itinerary: jsonb("itinerary").$type<ItineraryStep[]>().notNull().default([]),
-  included: text("included").array().notNull().default([]),
-  imageUrl: text("image_url").notNull(),
+  slug: text("slug").notNull().unique(),
+  destinationId: integer("destination_id").notNull(),
+  shortDescription: text("short_description").notNull(),
+  fullDescription: text("full_description").notNull(),
+  duration: integer("duration").notNull(),
+  price: integer("price").notNull(),
+  itinerary: text("itinerary"),
+  highlights: text("highlights"),
+  included: text("included"),
+  excluded: text("excluded"),
+  heroImageId: integer("hero_image_id"),
   featured: boolean("featured").notNull().default(false),
+  published: boolean("published").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
 
 export const inquiries = pgTable("inquiries", {
@@ -60,6 +70,10 @@ export const inquiries = pgTable("inquiries", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })
 
+export type Media = typeof media.$inferSelect
 export type Destination = typeof destinations.$inferSelect
 export type Tour = typeof tours.$inferSelect
 export type Inquiry = typeof inquiries.$inferSelect
+
+export type TourWithImage = Tour & { heroImageUrl: string | null }
+export type DestinationWithImage = Destination & { heroImageUrl: string | null }

@@ -3,9 +3,9 @@
 import { useTranslation } from "@/lib/i18n"
 import { PageHero } from "@/components/page-hero"
 import { ToursExplorer } from "@/components/tours-explorer"
-import type { Tour } from "@/lib/db/schema"
+import type { TourWithImage } from "@/lib/db/schema"
 
-export function ToursContent({ tours }: { tours: Tour[] }) {
+export function ToursContent({ tours }: { tours: TourWithImage[] }) {
   const { t } = useTranslation()
 
   return (
