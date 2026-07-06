@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "vercel-build": "next build --webpack",
+    "vercel-build": "payload migrate --config ./payload.config.ts && next build --webpack",
     "start": "next start",
     "lint": "eslint .",
+    "migrate": "payload migrate --config ./payload.config.ts",
     "seed": "tsx -r dotenv/config lib/db/seed.ts dotenv_config_path=.env"
   },
   "dependencies": {
