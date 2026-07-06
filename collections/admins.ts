@@ -4,7 +4,7 @@ export const admins: CollectionConfig = {
   slug: 'admins',
   auth: {
     tokenExpiration: 60 * 60 * 24,
-    verify: true,
+    verify: false,
   },
   access: {
     read: () => true,
