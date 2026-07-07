@@ -1,8 +1,11 @@
 import { mkdirSync } from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import type { CollectionConfig } from 'payload'
 
-const uploadDir = path.resolve(process.cwd(), 'public/uploads')
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+const uploadDir = path.resolve(dirname, '../public/uploads')
 
 mkdirSync(uploadDir, { recursive: true })
 
