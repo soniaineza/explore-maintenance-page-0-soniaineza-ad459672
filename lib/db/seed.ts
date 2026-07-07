@@ -100,9 +100,7 @@ async function seed() {
       featured: false,
     },
   ])
-
   console.log("Seeding tours...")
-
   await db.insert(tours).values([
     {
       slug: "gorilla-trekking-adventure",

@@ -1,4 +1,10 @@
+import { mkdirSync } from 'fs'
+import path from 'path'
 import type { CollectionConfig } from 'payload'
+
+const uploadDir = path.resolve(process.cwd(), 'public/uploads')
+
+mkdirSync(uploadDir, { recursive: true })
 
 export const media: CollectionConfig = {
   slug: 'media',
@@ -10,7 +16,7 @@ export const media: CollectionConfig = {
     useAsTitle: 'alt',
   },
   upload: {
-    staticDir: 'public/uploads',
+    staticDir: uploadDir,
     mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
     imageSizes: [
       {
