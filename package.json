@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "vercel-build": "payload migrate --config ./payload.config.ts && next build --webpack",
+    "dev": "next dev",
+    "build": "next build",
+    "vercel-build": "payload migrate --config ./payload.config.ts && next build",
     "start": "next start",
     "lint": "eslint .",
     "migrate": "payload migrate --config ./payload.config.ts",
