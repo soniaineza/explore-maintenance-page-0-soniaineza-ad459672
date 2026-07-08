@@ -9,6 +9,11 @@ __v0_jsx-dev-runtime.ts
 # Environment variables
 .env*.local
 
+# Windows reserved device names
+nul
+NUL
+Nul
+
 # Common ignores
 node_modules
 .next/
