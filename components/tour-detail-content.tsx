@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { TourCard } from "@/components/tour-card"
 import { useTranslation } from "@/lib/i18n"
 import { formatPrice } from "@/lib/utils"
-import type { TourWithImage } from "@/lib/db/schema"
+import type { TourWithImage } from "@/lib/queries"
 
 function splitLines(val: string | null): string[] {
   if (!val) return []

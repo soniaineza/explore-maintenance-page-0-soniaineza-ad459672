@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { MapPin } from "lucide-react"
 import { useTranslation } from "@/lib/i18n"
-import type { DestinationWithImage } from "@/lib/db/schema"
+import type { DestinationWithImage } from "@/lib/queries"
 
 export function DestinationCard({
   destination,

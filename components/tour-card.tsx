@@ -6,7 +6,7 @@ import { Clock, MapPin } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "@/lib/i18n"
 import { formatPrice } from "@/lib/utils"
-import type { TourWithImage } from "@/lib/db/schema"
+import type { TourWithImage } from "@/lib/queries"
 
 export function TourCard({ tour }: { tour: TourWithImage }) {
   const { t } = useTranslation()

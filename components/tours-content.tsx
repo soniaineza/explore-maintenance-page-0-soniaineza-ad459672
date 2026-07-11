@@ -3,7 +3,7 @@
 import { useTranslation } from "@/lib/i18n"
 import { PageHero } from "@/components/page-hero"
 import { ToursExplorer } from "@/components/tours-explorer"
-import type { TourWithImage } from "@/lib/db/schema"
+import type { TourWithImage } from "@/lib/queries"
 
 export function ToursContent({ tours }: { tours: TourWithImage[] }) {
   const { t } = useTranslation()

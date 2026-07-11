@@ -7,8 +7,9 @@ import {
   getRelatedTours,
   getTourBySlug,
 } from "@/lib/queries"
+import type { Destination } from "@/payload-types"
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 type Params = { params: Promise<{ slug: string }> }
 
@@ -27,7 +28,11 @@ export default async function TourDetailPage({ params }: Params) {
   const tour = await getTourBySlug(slug)
   if (!tour) notFound()
 
-  const related = await getRelatedTours(tour.slug, "")
+  const destId = typeof tour.destination === 'object'
+    ? (tour.destination as Destination).id
+    : undefined
+
+  const related = await getRelatedTours(tour.slug, destId)
 
   return (
     <div className="flex min-h-screen flex-col">

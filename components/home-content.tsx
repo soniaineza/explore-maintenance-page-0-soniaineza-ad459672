@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { TourCard } from "@/components/tour-card"
 import { DestinationCard } from "@/components/destination-card"
 import { useTranslation } from "@/lib/i18n"
-import type { TourWithImage, DestinationWithImage } from "@/lib/db/schema"
+import type { TourWithImage, DestinationWithImage } from "@/lib/queries"
 
 export function HomeContent({
   tours,

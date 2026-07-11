@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { ToursContent } from "@/components/tours-content"
 import { getAllTours } from "@/lib/queries"
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Circuits | TruRwanda",

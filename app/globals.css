@@ -50,6 +50,8 @@
 }
 
 :root {
+  --font-outfit: 'Outfit', sans-serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
   color-scheme: light;
   --background: oklch(0.985 0.008 95);
   --foreground: oklch(0.25 0.02 150);

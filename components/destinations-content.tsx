@@ -3,7 +3,7 @@
 import { useTranslation } from "@/lib/i18n"
 import { PageHero } from "@/components/page-hero"
 import { DestinationCard } from "@/components/destination-card"
-import type { DestinationWithImage } from "@/lib/db/schema"
+import type { DestinationWithImage } from "@/lib/queries"
 
 export function DestinationsContent({ destinations }: { destinations: DestinationWithImage[] }) {
   const { t } = useTranslation()

@@ -16,6 +16,8 @@ const navLinks = [
   { href: "/destinations", key: "destinations" },
   { href: "/gallery", key: "gallery" },
   { href: "/faq", key: "faq" },
+  { href: "/about", key: "about" },
+  { href: "/contact", key: "contact" },
   { href: "/plan", key: "plan" },
 ]
 

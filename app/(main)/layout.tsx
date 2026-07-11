@@ -1,19 +1,9 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
-import { Outfit, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TranslationProvider } from "@/lib/i18n"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import "../globals.css"
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-})
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   title: "TruRwanda | Explorez le Pays aux Mille Collines",
@@ -33,11 +23,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="fr"
-      className={`${outfit.variable} ${playfair.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="fr" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:wght@400..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <TranslationProvider>

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import { TourCard } from "@/components/tour-card"
 import { useTranslation } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
-import type { TourWithImage } from "@/lib/db/schema"
+import type { TourWithImage } from "@/lib/queries"
 
 export function ToursExplorer({ tours }: { tours: TourWithImage[] }) {
   const { t } = useTranslation()

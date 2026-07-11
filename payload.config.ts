@@ -25,7 +25,7 @@ const config = buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
-    push: false,
+    push: true,
   }),
   plugins: [
     ...(process.env.BLOB_READ_WRITE_TOKEN

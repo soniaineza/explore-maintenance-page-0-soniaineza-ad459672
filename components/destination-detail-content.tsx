@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ArrowLeft, MapPin } from "lucide-react"
 import { TourCard } from "@/components/tour-card"
 import { useTranslation } from "@/lib/i18n"
-import type { DestinationWithImage, TourWithImage } from "@/lib/db/schema"
+import type { DestinationWithImage, TourWithImage } from "@/lib/queries"
 
 export function DestinationDetailContent({
   destination,

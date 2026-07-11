@@ -1,5 +1,8 @@
 "use server"
 
+import { db } from "@/lib/db"
+import { inquiries } from "@/lib/db/schema"
+
 export type InquiryState = {
   status: "idle" | "success" | "error"
   message: string
@@ -27,6 +30,22 @@ export async function submitInquiry(
 
   if (!isValidEmail(email)) {
     return { status: "error", message: "Please enter a valid email address." }
+  }
+
+  const groupSize = groupSizeRaw ? parseInt(groupSizeRaw, 10) : null
+
+  try {
+    await db.insert(inquiries).values({
+      name,
+      email,
+      phone: phone || null,
+      tourSlug: tourSlug || null,
+      travelDate: travelDate || null,
+      groupSize: groupSize && !isNaN(groupSize) ? groupSize : null,
+      message,
+    })
+  } catch {
+    return { status: "error", message: "Failed to save inquiry. Please try again." }
   }
 
   return {
