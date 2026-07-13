@@ -9,7 +9,7 @@ import {
 } from "@/lib/queries"
 import type { Destination } from "@/payload-types"
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 type Params = { params: Promise<{ slug: string }> }
 
