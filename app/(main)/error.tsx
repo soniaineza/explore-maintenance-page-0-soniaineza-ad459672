@@ -1,7 +1,5 @@
 "use client"
 
-"use client"
-
 import { useEffect } from "react"
 import { AlertTriangle, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"

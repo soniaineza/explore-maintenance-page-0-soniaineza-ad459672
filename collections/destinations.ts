@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { validateSlug } from '@/hooks/validateSlug'
 
 export const destinations: CollectionConfig = {
   slug: 'destinations',
@@ -11,6 +12,9 @@ export const destinations: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    beforeValidate: [validateSlug],
   },
   fields: [
     { name: 'title', type: 'text', label: 'Title', required: true },
