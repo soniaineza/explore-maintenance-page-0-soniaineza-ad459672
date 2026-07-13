@@ -10,9 +10,20 @@ export interface DestinationWithImage extends Omit<Destination, 'heroImage'> {
   heroImageUrl: string | null
 }
 
-function resolveMediaUrl(media: number | Media | undefined | null): string | null {
+export function resolveMediaUrl(media: number | Media | undefined | null): string | null {
   if (!media || typeof media === 'number') return null
-  return (media as Media).url ?? null
+  const url = (media as Media).url
+  if (!url) return null
+  if (url.startsWith('/')) return url
+  try {
+    const parsed = new URL(url)
+    if (parsed.pathname.startsWith('/api/payload/')) {
+      return parsed.pathname
+    }
+    return url
+  } catch {
+    return url
+  }
 }
 
 export async function getAllTours(): Promise<TourWithImage[]> {

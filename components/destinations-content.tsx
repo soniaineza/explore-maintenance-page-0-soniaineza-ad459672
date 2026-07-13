@@ -5,7 +5,7 @@ import { PageHero } from "@/components/page-hero"
 import { DestinationCard } from "@/components/destination-card"
 import type { DestinationWithImage } from "@/lib/queries"
 
-export function DestinationsContent({ destinations }: { destinations: DestinationWithImage[] }) {
+export function DestinationsContent({ destinations, heroImageUrl }: { destinations: DestinationWithImage[]; heroImageUrl?: string | null }) {
   const { t } = useTranslation()
 
   return (
@@ -16,7 +16,7 @@ export function DestinationsContent({ destinations }: { destinations: Destinatio
         description={t('destinations.desc')}
         backHref="/"
         backLabel={t('destinations.back')}
-        imageSrc="/images/volcanoes-national-park.webp"
+        imageSrc={heroImageUrl || "/images/volcanoes-national-park.webp"}
       />
       <section className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

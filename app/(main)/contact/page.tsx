@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { getPayload } from "@/lib/payload"
+import { resolveMediaUrl } from "@/lib/queries"
 import { Mail, Phone, MessageCircle, MapPin, Globe } from "lucide-react"
 import Link from "next/link"
 
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   const payload = await getPayload()
   const contact = await payload.findGlobal({ slug: 'contact', depth: 1 })
+  const heroImageUrl = resolveMediaUrl((contact as any).heroImage)
 
   const contacts = [
     { icon: Mail, label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
@@ -40,7 +42,7 @@ export default async function ContactPage() {
           description="We'd love to hear from you. Reach out to start planning your Rwandan adventure."
           backHref="/"
           backLabel="Home"
-          imageSrc="/images/rwanda-hills.webp"
+          imageSrc={heroImageUrl || "/images/rwanda-hills.webp"}
         />
 
         <section className="mx-auto max-w-4xl px-4 py-14">

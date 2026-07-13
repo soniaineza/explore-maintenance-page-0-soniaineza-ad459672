@@ -14,12 +14,13 @@ export const metadata: Metadata = {
 
 export default async function ToursPage() {
   const tours = await getAllTours()
+  const heroImageUrl = tours[0]?.heroImageUrl
 
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <ToursContent tours={tours} />
+        <ToursContent tours={tours} heroImageUrl={heroImageUrl} />
       </main>
       <SiteFooter />
     </div>

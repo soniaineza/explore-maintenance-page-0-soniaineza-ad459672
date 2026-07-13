@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { getPayload } from "@/lib/payload"
+import { resolveMediaUrl } from "@/lib/queries"
 
 export const dynamic = 'force-dynamic'
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default async function AboutPage() {
   const payload = await getPayload()
   const about = await payload.findGlobal({ slug: 'about', depth: 1 })
+  const heroImageUrl = resolveMediaUrl((about as any).heroImage)
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -25,7 +27,7 @@ export default async function AboutPage() {
           description="Learn about our mission to share the beauty of Rwanda with the world."
           backHref="/"
           backLabel="Home"
-          imageSrc="/images/rwanda-hero.webp"
+          imageSrc={heroImageUrl || "/images/rwanda-hero.webp"}
         />
 
         <section className="mx-auto max-w-3xl px-4 py-14">

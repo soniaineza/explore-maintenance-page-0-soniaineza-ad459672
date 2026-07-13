@@ -4,6 +4,7 @@ export const contact: GlobalConfig = {
   slug: 'contact',
   label: 'Contact',
   fields: [
+    { name: 'heroImage', type: 'upload', label: 'Hero Image', relationTo: 'media' },
     { name: 'email', type: 'text', label: 'Email' },
     { name: 'phone', type: 'text', label: 'Phone' },
     { name: 'whatsapp', type: 'text', label: 'WhatsApp' },

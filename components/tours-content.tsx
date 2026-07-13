@@ -5,7 +5,7 @@ import { PageHero } from "@/components/page-hero"
 import { ToursExplorer } from "@/components/tours-explorer"
 import type { TourWithImage } from "@/lib/queries"
 
-export function ToursContent({ tours }: { tours: TourWithImage[] }) {
+export function ToursContent({ tours, heroImageUrl }: { tours: TourWithImage[]; heroImageUrl?: string | null }) {
   const { t } = useTranslation()
 
   return (
@@ -16,7 +16,7 @@ export function ToursContent({ tours }: { tours: TourWithImage[] }) {
         description={t('tours.desc')}
         backHref="/"
         backLabel={t('tours.back')}
-        imageSrc="/images/gorilla-trekking.webp"
+        imageSrc={heroImageUrl || "/images/gorilla-trekking.webp"}
       />
       <section className="mx-auto max-w-6xl px-4 py-10">
         <ToursExplorer tours={tours} />

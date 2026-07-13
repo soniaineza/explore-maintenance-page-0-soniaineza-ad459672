@@ -12,9 +12,11 @@ import type { TourWithImage, DestinationWithImage } from "@/lib/queries"
 export function HomeContent({
   tours,
   destinations,
+  heroImageUrl,
 }: {
   tours: TourWithImage[]
   destinations: DestinationWithImage[]
+  heroImageUrl?: string | null
 }) {
   const { t, locale } = useTranslation()
 
@@ -22,7 +24,7 @@ export function HomeContent({
     <main className="flex-1">
       <section className="relative flex min-h-[90vh] items-center overflow-hidden">
         <Image
-          src="/images/rwanda-hero.webp"
+          src={heroImageUrl || "/images/rwanda-hero.webp"}
           alt="Rwanda's rolling green hills at dawn"
           fill
           priority

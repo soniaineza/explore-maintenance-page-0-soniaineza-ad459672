@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PlanContent } from "@/components/plan-content"
-import { getTourOptions } from "@/lib/queries"
+import { getAllTours, getTourOptions } from "@/lib/queries"
 
 export const dynamic = 'force-dynamic'
 
@@ -15,16 +15,18 @@ export const metadata: Metadata = {
 type SearchParams = { searchParams: Promise<{ tour?: string }> }
 
 export default async function PlanPage({ searchParams }: SearchParams) {
-  const [tours, { tour }] = await Promise.all([
+  const [tours, { tour }, allTours] = await Promise.all([
     getTourOptions(),
     searchParams,
+    getAllTours(),
   ])
+  const heroImageUrl = allTours[0]?.heroImageUrl
 
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <PlanContent tours={tours} defaultTour={tour} />
+        <PlanContent tours={tours} defaultTour={tour} heroImageUrl={heroImageUrl} />
       </main>
       <SiteFooter />
     </div>
