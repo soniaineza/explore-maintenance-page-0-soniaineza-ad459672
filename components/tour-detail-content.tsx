@@ -2,9 +2,10 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, Check, Clock, MapPin } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check, Clock, MapPin, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TourCard } from "@/components/tour-card"
+import { TourItinerary } from "@/components/tour-itinerary"
 import { useTranslation } from "@/lib/i18n"
 import { formatPrice } from "@/lib/utils"
 import type { TourWithImage } from "@/lib/queries"
@@ -24,6 +25,7 @@ export function TourDetailContent({
   const { t } = useTranslation()
   const highlights = splitLines(tour.highlights)
   const included = splitLines(tour.included)
+  const excluded = splitLines(tour.excluded)
 
   return (
     <>
@@ -87,14 +89,9 @@ export function TourDetailContent({
             )}
 
             {tour.itinerary && (
-              <>
-                <h3 className="mt-10 font-heading text-xl font-semibold text-foreground">
-                  {t('tour.itinerary')}
-                </h3>
-                <p className="mt-4 whitespace-pre-line leading-relaxed text-muted-foreground">
-                  {tour.itinerary}
-                </p>
-              </>
+              <div className="mt-10">
+                <TourItinerary itinerary={tour.itinerary} />
+              </div>
             )}
           </div>
 
@@ -124,6 +121,25 @@ export function TourDetailContent({
                         className="flex items-start gap-2 text-sm text-muted-foreground"
                       >
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {excluded.length > 0 && (
+                <div className="mt-6 border-t border-border pt-6">
+                  <p className="text-sm font-semibold text-foreground">
+                    {t('tour.excluded')}
+                  </p>
+                  <ul className="mt-3 space-y-2">
+                    {excluded.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <X className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
                         {item}
                       </li>
                     ))}

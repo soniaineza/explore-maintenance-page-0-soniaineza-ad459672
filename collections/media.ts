@@ -6,6 +6,9 @@ export const media: CollectionConfig = {
     singular: 'Media',
     plural: 'Media',
   },
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'alt',
   },

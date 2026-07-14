@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { HomeContent } from "@/components/home-content"
-import { getAllTours, getFeaturedDestinations, resolveMediaUrl } from "@/lib/queries"
+import { getAllTours, getAllDestinations, resolveMediaUrl } from "@/lib/queries"
 import { getPayload } from "@/lib/payload"
 
 export const dynamic = 'force-dynamic'
@@ -10,7 +10,7 @@ export default async function HomePage() {
   const payload = await getPayload()
   const [tours, destinations, homepage] = await Promise.all([
     getAllTours(),
-    getFeaturedDestinations(),
+    getAllDestinations(),
     payload.findGlobal({ slug: 'homepage', depth: 1 }).catch(() => ({})),
   ])
 

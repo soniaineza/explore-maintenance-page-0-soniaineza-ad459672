@@ -1,31 +1,83 @@
 import { getPayload } from 'payload'
 import config from '../../payload.config'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const MEDIA_DIR = path.resolve(__dirname, '..', '..', 'media')
 
 async function seed() {
   const payload = await getPayload({ config })
 
-  console.log('Creating placeholder media...')
+  /**
+   * Find an existing media record by its alt text to avoid duplicates on re-run.
+   */
+  async function findMediaByAlt(payload: any, alt: string): Promise<number | null> {
+    try {
+      const result = await payload.find({
+        collection: 'media',
+        where: { alt: { equals: alt } },
+        limit: 1,
+      })
+      return result.docs.length > 0 ? result.docs[0].id : null
+    } catch {
+      return null
+    }
+  }
 
-  const placeholders = [
-    { alt: 'Akagera National Park', filename: 'akagera-safari.webp', url: '/images/akagera-safari.webp' },
-    { alt: 'Volcanoes National Park', filename: 'volcanoes-national-park.webp', url: '/images/volcanoes-national-park.webp' },
-    { alt: 'Nyungwe Forest National Park', filename: 'nyungwe-forest.webp', url: '/images/nyungwe-forest.webp' },
-    { alt: 'Kigali City', filename: 'kigali-city.webp', url: '/images/kigali-city.webp' },
+  console.log('Uploading media files...')
+
+  const mediaFiles = [
+    { alt: 'Akagera National Park', filename: 'akagera-safari.webp', mimeType: 'image/webp' },
+    { alt: 'Volcanoes National Park', filename: 'volcanoes-national-park.webp', mimeType: 'image/webp' },
+    { alt: 'Nyungwe Forest National Park', filename: 'nyungwe-forest.webp', mimeType: 'image/webp' },
+    { alt: 'Kigali City', filename: 'kigali-city.webp', mimeType: 'image/webp' },
   ]
 
   const mediaIds: Record<string, number> = {}
-  for (const p of placeholders) {
-    const created = await payload.create({
-      collection: 'media',
-      data: {
-        alt: p.alt,
-        url: p.url,
-        filename: p.filename,
-        mimeType: 'image/webp',
-      } as never,
-    })
-    mediaIds[p.filename] = created.id
-    console.log(`  Created media: ${p.alt} (id: ${created.id})`)
+  for (const m of mediaFiles) {
+    // Check if media already exists by alt text (idempotent re-runs)
+    const existingId = await findMediaByAlt(payload, m.alt)
+    if (existingId) {
+      mediaIds[m.filename] = existingId
+      console.log(`  EXISTS: ${m.alt} (id: ${existingId})`)
+      continue
+    }
+
+    const filePath = path.join(MEDIA_DIR, m.filename)
+    if (!fs.existsSync(filePath)) {
+      console.log(`  SKIP: ${m.filename} - file not found at ${filePath}`)
+      continue
+    }
+
+    const fileBuffer = fs.readFileSync(filePath)
+
+    try {
+      const created = await payload.create({
+        collection: 'media',
+        data: {
+          alt: m.alt,
+        },
+        file: {
+          data: fileBuffer,
+          mimetype: m.mimeType,
+          name: m.filename,
+          size: fileBuffer.length,
+        },
+      })
+      mediaIds[m.filename] = created.id
+      console.log(`  Created media: ${m.alt} (id: ${created.id})`)
+    } catch (error) {
+      console.log(`  ERROR creating media ${m.filename}:`, error)
+    }
+  }
+
+  if (Object.keys(mediaIds).length === 0) {
+    console.error('No media files were uploaded. Aborting seed.')
+    process.exit(1)
   }
 
   console.log('Creating destinations...')
@@ -71,6 +123,17 @@ async function seed() {
 
   const destMap: Record<string, number> = {}
   for (const d of destData) {
+    // Check if destination already exists
+    const existing = await payload.find({
+      collection: 'destinations',
+      where: { slug: { equals: d.slug } },
+      limit: 1,
+    })
+    if (existing.totalDocs > 0) {
+      destMap[d.slug] = existing.docs[0].id
+      console.log(`  EXISTS: ${d.title} (id: ${existing.docs[0].id})`)
+      continue
+    }
     const created = await payload.create({ collection: 'destinations', data: { ...d, published: true } })
     destMap[d.slug] = created.id
     console.log(`  Created destination: ${d.title} (id: ${created.id})`)
@@ -228,6 +291,16 @@ Anything else not mentioned in Inclusions`,
   ] satisfies { title: string; slug: string; destination: number; shortDescription: string; fullDescription: string; duration: number; price: number; itinerary: string; highlights: string; included: string; excluded: string; heroImage: number; featured: boolean }[]
 
   for (const t of tourData) {
+    // Check if tour already exists
+    const existing = await payload.find({
+      collection: 'tours',
+      where: { slug: { equals: t.slug } },
+      limit: 1,
+    })
+    if (existing.totalDocs > 0) {
+      console.log(`  EXISTS: ${t.title} (id: ${existing.docs[0].id})`)
+      continue
+    }
     const created = await payload.create({ collection: 'tours', data: { ...t, published: true } })
     console.log(`  Created tour: ${t.title} (id: ${created.id})`)
   }
@@ -256,7 +329,37 @@ Anything else not mentioned in Inclusions`,
   })
   console.log('  Updated Contact global')
 
-  console.log('Seed complete!')
+  console.log('Creating admin user...')
+
+  try {
+    const existingAdmins = await payload.find({
+      collection: 'admins',
+      limit: 1,
+    })
+
+    if (existingAdmins.totalDocs === 0) {
+      await payload.create({
+        collection: 'admins',
+        data: {
+          email: 'admin@trurwanda.com',
+          password: 'Admin123!',
+          name: 'Admin',
+        },
+      })
+      console.log('  Created admin user: admin@trurwanda.com / Admin123!')
+    } else {
+      console.log('  Admin user already exists')
+    }
+  } catch (error) {
+    console.log('  Could not create admin user (may already exist):', error)
+  }
+
+  console.log('\n========================================')
+  console.log('  Seed complete!')
+  console.log('  Data seeded: 4 destinations, 4 tours')
+  console.log('  Admin login: admin@trurwanda.com / Admin123!')
+  console.log('  Admin URL: http://localhost:3000/admin')
+  console.log('========================================')
   process.exit(0)
 }
 
