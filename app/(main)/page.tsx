@@ -11,7 +11,7 @@ export default async function HomePage() {
   const [tours, destinations, homepage] = await Promise.all([
     getAllTours(),
     getFeaturedDestinations(),
-    payload.findGlobal({ slug: 'homepage', depth: 1 }),
+    payload.findGlobal({ slug: 'homepage', depth: 1 }).catch(() => ({})),
   ])
 
   const heroImageUrl = resolveMediaUrl((homepage as any).heroBackgroundImage)

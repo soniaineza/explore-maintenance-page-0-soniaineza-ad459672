@@ -511,6 +511,7 @@ export interface Homepage {
  */
 export interface About {
   id: number;
+  heroImage?: (number | null) | Media;
   aboutTitle: string;
   description: string;
   mission?: string | null;
@@ -524,6 +525,7 @@ export interface About {
  */
 export interface Contact {
   id: number;
+  heroImage?: (number | null) | Media;
   email?: string | null;
   phone?: string | null;
   whatsapp?: string | null;
@@ -557,6 +559,7 @@ export interface HomepageSelect<T extends boolean = true> {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
+  heroImage?: T;
   aboutTitle?: T;
   description?: T;
   mission?: T;
@@ -570,6 +573,7 @@ export interface AboutSelect<T extends boolean = true> {
  * via the `definition` "contact_select".
  */
 export interface ContactSelect<T extends boolean = true> {
+  heroImage?: T;
   email?: T;
   phone?: T;
   whatsapp?: T;
