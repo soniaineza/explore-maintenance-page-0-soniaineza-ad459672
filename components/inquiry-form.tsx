@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { useTranslation } from "@/lib/i18n"
 
 const WA_NUMBER = "250795581177"
@@ -28,6 +35,7 @@ export function InquiryForm({
   const [stage, setStage] = useState<Stage>("form")
   const [sending, setSending] = useState(false)
   const [budget, setBudget] = useState(1500)
+  const [tourSlug, setTourSlug] = useState(defaultTour ?? "")
   const [error, setError] = useState("")
   const [savedData, setSavedData] = useState<Record<string, string> | null>(null)
 
@@ -226,19 +234,26 @@ export function InquiryForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="tourSlug">{t("plan.formTour")}</Label>
-          <select
-            id="tourSlug"
+          <Select
             name="tourSlug"
-            defaultValue={defaultTour ?? ""}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            value={tourSlug}
+            onValueChange={(value) => {
+              setTourSlug(value)
+            }}
           >
-            <option value="">{t("plan.formNotSure")}</option>
-            {tours.map((tour) => (
-              <option key={tour.slug} value={tour.slug}>
-                {tour.title}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger id="tourSlug" className="w-full">
+              <SelectValue placeholder={t("plan.formNotSure")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="">{t("plan.formNotSure")}</SelectItem>
+              {tours.map((tour) => (
+                <SelectItem key={tour.slug} value={tour.slug}>
+                  {tour.title}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <input type="hidden" name="tourSlug" value={tourSlug} />
         </div>
         <div className="space-y-2">
           <Label htmlFor="travelDate">{t("plan.formDate")}</Label>
