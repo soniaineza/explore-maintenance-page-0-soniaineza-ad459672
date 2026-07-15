@@ -21,12 +21,12 @@ const typescriptConfig = process.env.NODE_ENV === 'production' ? undefined : { o
 const config = buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME',
-  db: postgresAdapter({
+db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
-      max: 5,
-      connectionTimeoutMillis: 10000,
-      idleTimeoutMillis: 30000,
+      max: 10,
+      connectionTimeoutMillis: 30000,
+      idleTimeoutMillis: 60000,
       keepAlive: true,
     },
     push: true,
