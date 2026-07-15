@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useTranslation } from "@/lib/i18n"
 
 const WA_NUMBER = "250795581177"
-const EMAIL_TO = "trurwanda@gmail.com"
+const EMAIL_TO = "horizonquestrw@gmail.com"
 
 type Stage = "form" | "choice" | "sent"
 

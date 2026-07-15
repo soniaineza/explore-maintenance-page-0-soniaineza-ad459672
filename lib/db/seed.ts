@@ -321,7 +321,7 @@ Anything else not mentioned in Inclusions`,
   await payload.updateGlobal({
     slug: 'contact',
     data: {
-      email: 'hello@trurwanda.com',
+      email: 'horizonquestrw@gmail.com',
       phone: '+250 795 581 177',
       whatsapp: '+250795581177',
       address: 'Norrsken Kigali House, KN 78 St, Kigali, Rwanda',
