@@ -25,15 +25,19 @@ const MEDIA_DIR = path.resolve(__dirname, '..', '..', 'media')
 // These map the alt text stored in Payload media records to the actual
 // source files available in the `media/` directory.
 const ALT_TO_FILE: Record<string, string> = {
-  'Gorilla Trekking Close-up':  'gorilla-trekking.webp',
-  'Akagera Zebra Safari':      'akagera-zebra.webp',
-  'Lake Kivu Sunset':          'lake-kivu-sunset.webp',
-  'Lake Kivu':                 'lake-kivu.webp',
-  'Nyungwe Forest Bird':       'nyungwe-bird.webp',
+  'Akagera National Park':      'akagera-zebra.webp',
+  'Akagera 1 Day Safari':      'rwanda-landscape.webp',
+  'Akagera 2 Day Safari':      'rwanda-hero.webp',
+  'Volcanoes National Park':    'gorilla-trekking.webp',
+  'Volcanoes 1 Day Trek':      'rwanda-hills.webp',
+  'Volcanoes 2 Day Trek':      'rwanda-countryside.webp',
   'Nyungwe Forest National Park': 'nyungwe-bird.webp',
-  'Volcanoes National Park':   'gorilla-trekking.webp',
   'Kigali City':               'kigali-street.webp',
-  'Akagera National Park':     'akagera-zebra.webp',
+  'Lake Kivu':                 'lake-kivu.webp',
+  'Lake Kivu Sunset':          'lake-kivu-sunset.webp',
+  'African Bird':              'african-bird.webp',
+  'Cultural Experience':       'cultural-experience.webp',
+  'Rwanda Market':             'rwanda-market.webp',
 }
 
 async function run() {

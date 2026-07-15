@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const MEDIA_DIR = path.resolve(__dirname, '..', '..', 'media')
+const MEDIA_DIR = path.resolve(__dirname, '..', '..', 'seed-assets')
 
 async function seed() {
   const payload = await getPayload({ config })
@@ -31,22 +31,23 @@ async function seed() {
   console.log('Uploading media files...')
 
   const mediaFiles = [
-    { alt: 'Akagera National Park', filename: 'akagera-safari.webp', mimeType: 'image/webp' },
-    { alt: 'Volcanoes National Park', filename: 'volcanoes-national-park.webp', mimeType: 'image/webp' },
-    { alt: 'Nyungwe Forest National Park', filename: 'nyungwe-forest.webp', mimeType: 'image/webp' },
-    { alt: 'Kigali City', filename: 'kigali-city.webp', mimeType: 'image/webp' },
+    { alt: 'Akagera National Park', filename: 'akagera-zebra.webp', mimeType: 'image/webp' },
+    { alt: 'Volcanoes National Park', filename: 'gorilla-trekking.webp', mimeType: 'image/webp' },
+    { alt: 'Nyungwe Forest National Park', filename: 'nyungwe-bird.webp', mimeType: 'image/webp' },
+    { alt: 'Kigali City', filename: 'kigali-street.webp', mimeType: 'image/webp' },
+    { alt: 'Akagera 1 Day Safari', filename: 'rwanda-landscape.webp', mimeType: 'image/webp' },
+    { alt: 'Akagera 2 Day Safari', filename: 'rwanda-hero.webp', mimeType: 'image/webp' },
+    { alt: 'Volcanoes 1 Day Trek', filename: 'rwanda-hills.webp', mimeType: 'image/webp' },
+    { alt: 'Volcanoes 2 Day Trek', filename: 'rwanda-countryside.webp', mimeType: 'image/webp' },
+    { alt: 'Lake Kivu', filename: 'lake-kivu.webp', mimeType: 'image/webp' },
+    { alt: 'Lake Kivu Sunset', filename: 'lake-kivu-sunset.webp', mimeType: 'image/webp' },
+    { alt: 'African Bird', filename: 'african-bird.webp', mimeType: 'image/webp' },
+    { alt: 'Cultural Experience', filename: 'cultural-experience.webp', mimeType: 'image/webp' },
+    { alt: 'Rwanda Market', filename: 'rwanda-market.webp', mimeType: 'image/webp' },
   ]
 
   const mediaIds: Record<string, number> = {}
   for (const m of mediaFiles) {
-    // Check if media already exists by alt text (idempotent re-runs)
-    const existingId = await findMediaByAlt(payload, m.alt)
-    if (existingId) {
-      mediaIds[m.filename] = existingId
-      console.log(`  EXISTS: ${m.alt} (id: ${existingId})`)
-      continue
-    }
-
     const filePath = path.join(MEDIA_DIR, m.filename)
     if (!fs.existsSync(filePath)) {
       console.log(`  SKIP: ${m.filename} - file not found at ${filePath}`)
@@ -90,7 +91,7 @@ async function seed() {
       fullDescription: 'Akagera National Park is Rwanda\'s premiere savanna national park, covering 1,122 square kilometers in the east of the country. Established in 1934, it has undergone an incredible conservation revival, reintroducing lion, black rhino, and other species in recent years. Today it is one of the most accessible parks in Africa, offering classic game drives through diverse landscapes of acacia woodland, swamp, and open plains. Lake Ihema is the largest of several lakes within the park and provides excellent boat safaris where visitors can spot hippos, crocodiles, and abundant waterbirds.',
       location: 'Eastern Province',
       featured: true,
-      heroImage: mediaIds['akagera-safari.webp'],
+      heroImage: mediaIds['akagera-zebra.webp'],
     },
     {
       title: 'Volcanoes National Park',
@@ -99,7 +100,7 @@ async function seed() {
       fullDescription: 'Volcanoes National Park is a breathtaking protected area in northwestern Rwanda, part of the Virunga Mountains. It is world-famous for its population of endangered mountain gorillas, which were brought to global attention by primatologist Dian Fossey. The park features five of the eight volcanoes in the Virunga range, including Mount Karisimbi — the highest at 4,507 meters. Visitors can trek through dense bamboo forests to observe gorilla families in their natural habitat, hike volcanoes, and visit the Dian Fossey Grave and research center.',
       location: 'Musanze',
       featured: true,
-      heroImage: mediaIds['volcanoes-national-park.webp'],
+      heroImage: mediaIds['gorilla-trekking.webp'],
     },
     {
       title: 'Nyungwe National Park',
@@ -108,7 +109,7 @@ async function seed() {
       fullDescription: 'Nyungwe Forest National Park is a sprawling montane rainforest in southwestern Rwanda, one of the oldest in Africa. Spanning over 1,000 square kilometers, it is a biodiversity hotspot with over 1,000 plant species, 300 bird species, and 13 species of primates — including chimpanzees, colobus monkeys, and L\'Hoest\'s monkeys. The park is famous for its canopy walkway suspended 50 meters above the forest floor, offering panoramic views of the lush greenery.',
       location: 'Southwest',
       featured: true,
-      heroImage: mediaIds['nyungwe-forest.webp'],
+      heroImage: mediaIds['nyungwe-bird.webp'],
     },
     {
       title: 'Kigali City',
@@ -117,7 +118,7 @@ async function seed() {
       fullDescription: 'Kigali is the vibrant capital city of Rwanda, nestled among rolling hills and known for its cleanliness, safety, and warm hospitality. As the economic and cultural heart of the nation, Kigali offers a fascinating blend of modern development and traditional Rwandan culture. The city is home to world-class restaurants, a burgeoning arts scene, the moving Kigali Genocide Memorial, and excellent craft markets. Kigali also serves as the gateway to the rest of the country, with easy access to all major national parks.',
       location: 'Kigali Province',
       featured: true,
-      heroImage: mediaIds['kigali-city.webp'],
+      heroImage: mediaIds['kigali-street.webp'],
     },
   ] satisfies { title: string; slug: string; shortDescription: string; fullDescription: string; location: string; featured: boolean; heroImage: number }[]
 
@@ -130,8 +131,13 @@ async function seed() {
       limit: 1,
     })
     if (existing.totalDocs > 0) {
+      await payload.update({
+        collection: 'destinations',
+        id: existing.docs[0].id,
+        data: { heroImage: d.heroImage },
+      })
       destMap[d.slug] = existing.docs[0].id
-      console.log(`  EXISTS: ${d.title} (id: ${existing.docs[0].id})`)
+      console.log(`  UPDATED: ${d.title} (id: ${existing.docs[0].id})`)
       continue
     }
     const created = await payload.create({ collection: 'destinations', data: { ...d, published: true } })
@@ -173,7 +179,7 @@ Professional Guide`,
 Insurance
 Visa
 Anything else not mentioned in Inclusions`,
-      heroImage: mediaIds['akagera-safari.webp'],
+      heroImage: mediaIds['rwanda-landscape.webp'],
       featured: true,
     },
     {
@@ -215,7 +221,7 @@ Professional Guide
 Insurance
 Visa
 Anything else not mentioned in Inclusions`,
-      heroImage: mediaIds['akagera-safari.webp'],
+      heroImage: mediaIds['rwanda-hero.webp'],
       featured: true,
     },
     {
@@ -247,7 +253,7 @@ Professional Guide`,
 Insurance
 Visa
 Anything else not mentioned in Inclusions`,
-      heroImage: mediaIds['volcanoes-national-park.webp'],
+      heroImage: mediaIds['rwanda-hills.webp'],
       featured: true,
     },
     {
@@ -285,7 +291,7 @@ Professional Guide
       excluded: `Insurance
 Visa
 Anything else not mentioned in Inclusions`,
-      heroImage: mediaIds['volcanoes-national-park.webp'],
+      heroImage: mediaIds['rwanda-countryside.webp'],
       featured: true,
     },
   ] satisfies { title: string; slug: string; destination: number; shortDescription: string; fullDescription: string; duration: number; price: number; itinerary: string; highlights: string; included: string; excluded: string; heroImage: number; featured: boolean }[]
@@ -298,7 +304,12 @@ Anything else not mentioned in Inclusions`,
       limit: 1,
     })
     if (existing.totalDocs > 0) {
-      console.log(`  EXISTS: ${t.title} (id: ${existing.docs[0].id})`)
+      await payload.update({
+        collection: 'tours',
+        id: existing.docs[0].id,
+        data: { heroImage: t.heroImage },
+      })
+      console.log(`  UPDATED: ${t.title} (id: ${existing.docs[0].id})`)
       continue
     }
     const created = await payload.create({ collection: 'tours', data: { ...t, published: true } })
